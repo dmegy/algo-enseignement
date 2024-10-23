@@ -1,4 +1,4 @@
-Consignes / conseils de programation
+Consignes / conseils de programmation
 =================
 
 Table des matières : 
@@ -39,7 +39,7 @@ def moyenne(L: list) -> float:
 Gestion des erreurs
 ---
 
-Dans cette UE, lorsque écrit un algorithme en pseudo-code (ou en Python), on ne s'occupera *pas* de gérer les erreurs.
+Dans cette UE, lorsque l'on écrit un algorithme en pseudo-code (ou en Python), on ne s'occupera *pas* de gérer les erreurs.
 Les fonctions sont supposées recevoir un objet d'un certain type, et on supposera toujours que l'argument est du bon type.
 
 Exemple : si un énoncé demande d'écrire une fonction qui prend une liste non vide de nombres et renvoie la moyenne des valeurs, il est attendu quelque chose du genre : 
