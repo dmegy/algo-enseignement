@@ -10,7 +10,8 @@ Cette page contient :
 Objectif principal de l'UE:
 ---
 
-Apprendre à écrire des algorithmes pour répondre à une question donnée, à les implémenter en python, et surtout, apprendre à justifier en détail la terminaison et correction d'algororithmes et à calculer ou estimer leur complexité. 
+- Apprendre à écrire des algorithmes pour répondre à une question donnée et à les implémenter en python.
+- Apprendre à justifier en détail la terminaison et correction d'algorithmes et à calculer ou estimer leur complexité. 
 
 Prochaines interrogations et épreuves:
 ---
