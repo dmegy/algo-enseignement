@@ -1,0 +1,265 @@
+
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=3cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{layout}
+\usepackage{fancyhdr}
+
+\newtheorem*{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem*{nota}{Notation}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rem2}{Remarques}
+\newtheorem{de2}{Définition}
+\newtheorem{pro2}[de2]{Propriété}
+\newtheorem{thm2}[de2]{Théorème}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage{comment}
+\usepackage{xr-hyper}
+
+\title{}
+
+\date{}
+
+
+
+\makeatletter%pour faire référence aux exercices de examen.tex
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
+\myexternaldocument{examen_algo}%pour faire référence aux exercices de enonce.tex
+
+
+\begin{document}
+
+
+
+
+\pagestyle{fancy}
+
+\fancyhead{}
+ \fancyfoot{}
+
+ \lhead{ 2023/2024 \\  L3 Mathématiques
+}
+\chead{\textbf{Algorithmes pour l'enseignement}\\} 
+ \rhead{ Université de Lorraine \\  }
+
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+
+
+\newcommand{\md}[3]{#1\ \equiv \ #2 \! \! \! \! \! \pmod {#3} }
+\newcommand{\nmd}[3]{#1 \not \equiv #2 \! \! \! \! \!  \pmod {#3} }
+\newcommand{\mda}[3]{#1 \equiv #2 \! \!  \pmod {#3} }
+\newcommand{\nmda}[3]{#1 \not \equiv #2 \! \! \pmod {#3} }
+\newcommand{\mo}[2]{#1 \! \! \! \! \! \pmod #2 }
+\newcommand{\moa}[2]{#1 \! \!  \pmod {#2} }
+
+\thispagestyle{fancy}
+
+\begin{center}
+%    \HRule \\[0.6cm]
+    { \huge \bfseries
+Corrigé
+     \\ [0cm] }
+    \HRule \\[0.5cm]
+\end{center}
+
+
+
+
+
+
+\textbf{Exercice~\ref{prelim}}   1)
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Valeur\_absolue($x$) \\
+& si $x<0$:\\
+&\ \ \ {\ \rm |}$x\leftarrow -x$\\
+& Renvoyer $x$.
+\end{tabular}
+
+2)
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Factorielle($n$) \\
+&$a\leftarrow 1$\\
+&  pour $i$ de $1$ à $n$:\\
+&\ \ \ {\ \rm |} $a\leftarrow ai$\\
+& Renvoyer $a$.
+\end{tabular}
+
+
+3)
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Puissance($n,x$) \\
+&$a\leftarrow 1$\\
+&  pour $i$ de $1$ à $n$:\\
+&\ \ \ {\ \rm |} $a\leftarrow ax$\\
+& Renvoyer $a$.
+\end{tabular}
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Puissance\_rec($n,x$) \\
+&si $n=0$:\\
+& \ \ \ {\ \rm |} Renvoyer $1$:\\
+& sinon :\\
+& \ \ \ {\ \rm |} Renvoyer $x$Puissance\_rec($n-1,x$)
+\end{tabular}
+
+
+4)
+
+ \begin{tabular}{ll}
+\textbf{Algorithme} &Somme\_serie($n,x$) \\
+& $a\leftarrow 0$ \\
+& pour $i$ de $0$ à $n$:\\
+& \ \ \ {\ \rm |}  $a\leftarrow a+$Puissance$(i,x)$/Factorielle($i$)\\
+& Renvoyer $a$.
+\end{tabular}
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Somme\_serie2($n,x$) \\
+& $a\leftarrow 0$ \\
+& $y\leftarrow 1$\\
+& pour $i$ de $1$ à $n$:\\
+& \ \ \ {\ \rm |} $y\leftarrow y. \frac{x}{i}$\\
+& \ \ \ {\ \rm |}  $a\leftarrow a+y$\\
+& Renvoyer $a$.
+\end{tabular}
+
+
+\textbf{Exercice~\ref{exSuite_recurrente}}
+
+1) 
+
+ \begin{tabular}{ll}
+\textbf{suite\_u}($n$):\\
+& $a\leftarrow 1$ \ \ \ \ \# $a$ correspond à $u_n$ \\ 
+& $b\leftarrow 2$ \ \ \ \ \# $b$ correspond à $u_{n+1}$ \\
+& Pour $i$ allant  de $1$ à $n-1$: \\
+&\ \ \ {\ \rm |} $a,b\leftarrow b,3a+2b$\\
+& Si $n=0$:\\
+&\ \ \ {\ \rm |}Renvoyer $a$\\
+& Sinon: \\
+&\ \ \ {\ \rm |}Renvoyer $b$.
+\end{tabular}
+
+2) 
+
+ \begin{tabular}{ll}
+\textbf{suite\_u\_rec}($n$):\\
+
+& Si $n<=1$:\\
+&\ \ \ {\ \rm |}Renvoyer $n+1$\\
+& Sinon: \\
+&\ \ \ {\ \rm |}Renvoyer $3*suite\_u\_rec(n-2)+2*suite\_u\_rec(n-1)$.
+\end{tabular}
+
+3) \begin{tabular}{ll}
+\textbf{suite\_v}($n$):\\
+
+& Si $n<=1$:\\
+&\ \ \ {\ \rm |}Renvoyer $1+2n$\\
+& sinon si $n\%2=0$:\\
+&\ \ \ {\ \rm |}Renvoyer (suite\_v$(n/2))^2+5$\\
+& sinon:\\
+&\ \ \ {\ \rm |}Renvoyer (suite\_v$((n-1)/2))$.(suite\_v$((n-1)/2+1))+7$.\\
+\end{tabular}
+
+\textbf{Exercice~\ref{exTri_selection} : }cf cours.
+
+
+\textbf{Exercice~\ref{eqPell-fermat}}
+
+Dans le programme suivant, $\mathrm{Ent}$ désigne la fonction partie entière inférieure. 
+
+\begin{tabular}{ll}
+\textbf{solutions}():\\
+&$L\leftarrow [\ ]$\\
+& Pour $y$ de $1$ à $100$\\
+& \ \ \ {\ \rm |} Si $\mathrm{Ent}(\sqrt{1+2y^2})=\sqrt{1+2y^2}$:\\
+& \ \ \ \ \ \ {\ \rm |} $L\leftarrow L+[(\sqrt{1+2y^2},y)]$\\
+& Renvoyer $L$.\\
+\end{tabular}
+
+
+\textbf{Exercice~\ref{exSuite_e}}
+
+La suite $(u_n)$ est strictement croissante car $u_{n+1}-u_n>0$ pour tout $n\in \N^*$. Soit $n\in \N^*$. Alors $v_{n+1}-v_n=\frac{1}{(n+1)^2 n!}-\frac{1}{n.n!}=\frac{1}{n!}(\frac{1}{(n+1)^2}-\frac{1}{n})<0$. La suite $(v_n)$ est donc strictement décroissante. Comme $v-u$ tend vers $0$, les suites $u$ et $v$ sont adjacentes.
+
+
+Pour tout $n\in \N$, on a $u_n< e <v_n=u_n+\frac{1}{n.n!}$, donc $0<e-u_n<\frac{1}{n.n!}$. On peut donc utiliser le programme suivant :
+
+
+\begin{tabular}{ll}
+\textbf{approximation\_e}($\epsilon$):\\
+& $s\leftarrow 2$\\
+& $P\leftarrow 1$\\
+& $n\leftarrow 1$\\
+& Tant que $1/(P*n)>\epsilon$:\\
+& \ \ \ {\ \rm |}$n\leftarrow n+1$\\
+& \ \ \ {\ \rm |}$P\leftarrow P*n$\\
+& \ \ \ {\ \rm |}$s\leftarrow s+1/P$\\
+& Renvoyer $s$. 
+\end{tabular}
+
+
+
+
+
+
+\textbf{Exercice~\ref{Capes}}
+
+1) Soit $f:\R\rightarrow \R$ définie par $f(x)=\frac{1}{2}x+1$, pour $x\in  \R$. Soit $(u_n)\in \R^\N$ la suite définie par $u_0=-3$, $u_{n+1}=f(u_n)$, pour $n\in \N$. Alors comme $f$ est croissante, $(u_n)$ est monotone. De plus, $u_1=-\frac{1}{2}$, donc $(u_n)$ est croissante et admet une limite $\ell\in \overline{\R}$. Si $\ell$ est finie, alors $u_{n+1}=f(u_n)\rightarrow f(\ell)$ (car $f$ est continue) et $u_{n+1}\rightarrow \ell$, donc $\ell=f(\ell)$, donc $\ell=2$. Ainsi, soit $(u_n)$ est majorée par $2$, soit $u_n\rightarrow +\infty$. Soit $n\in \N$ tel que $u_n \leq 2$. Alors $u_{n+1}\leq \frac{1}{2}.2+1=2$, donc $u_{n+1}\leq 2$. Par récurrence, on en déduit que $(u_n)$ est majorée par $2$, et donc qu'elle converge en croissant vers $2$. En particulier, l'algorithme termine, puisque $A=u_N$, après chaque passage dans la boucle. 
+
+2)
+\begin{tabular}{ll}
+ \textbf{Algorithme} &Lancers\\
+& $A\leftarrow $AléaEntre($1,6$) \\
+& $I\leftarrow 1$\\
+& Tant que $A\neq 6$\\
+& \ \ \ {\ \rm |} $I\leftarrow I+1$\\
+&  \ \ \ {\ \rm |}$A\leftarrow $AléaEntre($1,6$)\\
+& Renvoyer $I$.
+\end{tabular}
+
+À la fin des deux étapes de la boucle  «~tant que~», $I$ vaut le nombre de lancers effectués. 
+
+
+
+
+
+
+\end{document}
+
+

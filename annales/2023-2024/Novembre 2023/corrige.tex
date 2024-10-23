@@ -1,0 +1,301 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=3cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{layout}
+\usepackage{fancyhdr}
+
+\newtheorem*{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem*{nota}{Notation}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rem2}{Remarques}
+\newtheorem{de2}{Définition}
+\newtheorem{pro2}[de2]{Propriété}
+\newtheorem{thm2}[de2]{Théorème}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage{comment}
+\usepackage{xr-hyper}
+
+\title{}
+
+\date{}
+
+
+
+\makeatletter%pour faire référence aux exercices de examen.tex
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
+\myexternaldocument{examen}%pour faire référence aux exercices de enonce.tex
+
+
+\begin{document}
+
+
+
+
+\pagestyle{fancy}
+
+\fancyhead{}
+ \fancyfoot{}
+
+ \lhead{ 2023/2024 \\  L3 Mathématiques
+}
+\chead{\textbf{Algorithmes pour l'enseignement}\\} 
+ \rhead{ Université de Lorraine \\  }
+
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+
+
+\newcommand{\md}[3]{#1\ \equiv \ #2 \! \! \! \! \! \pmod {#3} }
+\newcommand{\nmd}[3]{#1 \not \equiv #2 \! \! \! \! \!  \pmod {#3} }
+\newcommand{\mda}[3]{#1 \equiv #2 \! \!  \pmod {#3} }
+\newcommand{\nmda}[3]{#1 \not \equiv #2 \! \! \pmod {#3} }
+\newcommand{\mo}[2]{#1 \! \! \! \! \! \pmod #2 }
+\newcommand{\moa}[2]{#1 \! \!  \pmod {#2} }
+
+\thispagestyle{fancy}
+
+\begin{center}
+%    \HRule \\[0.6cm]
+    { \huge \bfseries
+Corrigé
+     \\ [0cm] }
+    \HRule \\[0.5cm]
+\end{center}
+
+\textbf{Exercice~\ref{prelim}} :
+
+  1)
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Valeur\_absolue($x$) \\
+& si $x<0$:\\
+&\ \ \ {\ \rm |}$x\leftarrow -x$\\
+& Renvoyer $x$.
+\end{tabular}
+
+2)
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Factorielle($n$) \\
+&$a\leftarrow 1$\\
+&  pour $i$ de $1$ à $n$:\\
+&\ \ \ {\ \rm |} $a\leftarrow ai$\\
+& Renvoyer $a$.
+\end{tabular}
+
+Cet algorithme renvoie $n!$ car si $a_i$ désigne la valeur de $a$ à la fin de l'étape $i$, on a $a_i=i!$ pour tout $i\in \llbracket 1,n\rrbracket$. 
+
+3)
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Puissance($n,x$) \\
+&$a\leftarrow 1$\\
+&  pour $i$ de $1$ à $n$:\\
+&\ \ \ {\ \rm |} $a\leftarrow ax$\\
+& Renvoyer $a$.
+\end{tabular}
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Puissance\_rec($n,x$) \\
+&si $n=0$:\\
+& \ \ \ {\ \rm |} Renvoyer $1$:\\
+& sinon :\\
+& \ \ \ {\ \rm |} Renvoyer $x$Puissance\_rec($n-1,x$)
+\end{tabular}
+
+
+4)
+
+ \begin{tabular}{ll}
+\textbf{Algorithme} &Somme\_serie($n,x$) \\
+& $a\leftarrow 0$ \\
+& pour $i$ de $0$ à $n$:\\
+& \ \ \ {\ \rm |}  $a\leftarrow a+$Puissance$(i,x)$/Factorielle($i$)\\
+& Renvoyer $a$.
+\end{tabular}
+
+\begin{tabular}{ll}
+\textbf{Algorithme} &Somme\_serie2($n,x$) \\
+& $a\leftarrow 0$ \\
+& $y\leftarrow 1$\\
+& pour $i$ de $1$ à $n$:\\
+& \ \ \ {\ \rm |} $y\leftarrow y. \frac{x}{i}$\\
+& \ \ \ {\ \rm |}  $a\leftarrow a+y$\\
+& Renvoyer $a$.
+\end{tabular}
+
+Pour $i\in \llbracket 1,n\rrbracket$, si $y_i$ et $a_i$ désignent les valeurs de $y$ et  $a$ à la fin de la boucle, on a $y_i=\frac{x^i}{i!}$ et $a_i=\sum_{j=1}^i y_j=\sum_{j=1}^i \frac{x^j}{j!}$. 
+
+5) \begin{tabular}{ll}
+\textbf{Algorithme} &Maximum($L$) \\
+& $n\leftarrow \mathrm{long}(L)$ \\
+& $M\leftarrow L[0]$\\
+& pour $i$ allant de $1$ à $n-1$:\\
+& \ \ \ {\ \rm |} si $L[i]>M$:\\
+& \ \ \ \ \ \ {\ \rm |}  $M\leftarrow L[i]$\\
+& Renvoyer $M$.
+\end{tabular}
+
+On note $M_i$ la valeur de $M$ à la fin de  l'étape $i$. Alors $M_1=\max(L[0],L[1])$. Soit $i\in \llbracket 1,n-1\rrbracket$ et supposons que $M_i=\max(L[0],\ldots,L[i])$. Alors $M_{i+1}=\max(M_i,L[i+1])=\max(L[0],\ldots,L[i+1])$. Par récurrence, on en déduit que $M_{n-1}=\max(L[0],\ldots,L[n-1])=\max(L)$. 
+
+\textbf{Exercice~\ref{maximum}}
+
+1) \begin{tabular}{ll}
+\textbf{Algorithme} &Majorant($M$) \\
+& $S\leftarrow 1$\\
+& $n\leftarrow 1$\\
+& tant que $S < M$:\\
+& \ \ \ {\ \rm |} $n\leftarrow n+1$\\
+& \ \ \ {\ \rm |} $S\leftarrow S+\frac{1}{n}$\\
+
+& Renvoyer $n$.
+\end{tabular}
+
+
+
+\textbf{Exercice~\ref{exSuite_recurrente}}
+
+1) 
+
+ \begin{tabular}{ll}
+\textbf{suite\_u}($n$):\\
+& $a\leftarrow 1$ \ \ \ \ \# $a$ correspond à $u_n$ \\ 
+& $b\leftarrow 2$ \ \ \ \ \# $b$ correspond à $u_{n+1}$ \\
+& Pour $i$ allant  de $1$ à $n-1$: \\
+&\ \ \ {\ \rm |} $a,b\leftarrow b,3a+2b$\\
+& Si $n=0$:\\
+&\ \ \ {\ \rm |}Renvoyer $a$\\
+& Sinon: \\
+&\ \ \ {\ \rm |}Renvoyer $b$.
+\end{tabular}
+
+2) 
+
+ \begin{tabular}{ll}
+\textbf{suite\_u\_rec}($n$):\\
+
+& Si $n<=1$:\\
+&\ \ \ {\ \rm |}Renvoyer $n+1$\\
+& Sinon: \\
+&\ \ \ {\ \rm |}Renvoyer $3*suite\_u\_rec(n-2)+2*suite\_u\_rec(n-1)$.
+\end{tabular}
+
+3) \begin{tabular}{ll}
+\textbf{suite\_v}($n$):\\
+
+& Si $n<=1$:\\
+&\ \ \ {\ \rm |}Renvoyer $1+2n$\\
+& sinon si $n\%2=0$:\\
+&\ \ \ {\ \rm |}Renvoyer (suite\_v$(n/2))^2+5$\\
+& sinon:\\
+&\ \ \ {\ \rm |}Renvoyer (suite\_v$((n-1)/2))$.(suite\_v$((n-1)/2+1))+7$.\\
+\end{tabular}
+
+\textbf{Exercice~\ref{exTri_selection} : }cf cours.
+
+
+\textbf{Exercice~\ref{eqPell-fermat}}
+
+Dans le programme suivant, $\mathrm{Ent}$ désigne la fonction partie entière inférieure. 
+
+\begin{tabular}{ll}
+\textbf{solutions}():\\
+&$L\leftarrow [\ ]$\\
+& Pour $y$ de $1$ à $100$\\
+& \ \ \ {\ \rm |} Si $\mathrm{Ent}(\sqrt{1+2y^2})=\sqrt{1+2y^2}$:\\
+& \ \ \ \ \ \ {\ \rm |} $L\leftarrow L+[(\sqrt{1+2y^2},y)]$\\
+& Renvoyer $L$.\\
+\end{tabular}
+
+
+\textbf{Exercice~\ref{exSuite_e}}
+
+La suite $(u_n)$ est strictement croissante car $u_{n+1}-u_n>0$ pour tout $n\in \N^*$. Soit $n\in \N^*$. Alors $v_{n+1}-v_n=\frac{1}{(n+1)^2 n!}-\frac{1}{n.n!}=\frac{1}{n!}(\frac{1}{(n+1)^2}-\frac{1}{n})<0$. La suite $(v_n)$ est donc strictement décroissante. Comme $v-u$ tend vers $0$, les suites $u$ et $v$ sont adjacentes.
+
+
+Pour tout $n\in \N$, on a $u_n< e <v_n=u_n+\frac{1}{n.n!}$, donc $0<e-u_n<\frac{1}{n.n!}$. On peut donc utiliser le programme suivant :
+
+
+\begin{tabular}{ll}
+\textbf{approximation\_e}($\epsilon$):\\
+& $s\leftarrow 2$\\
+& $P\leftarrow 1$\\
+& $n\leftarrow 1$\\
+& Tant que $1/(P*n)>\epsilon$:\\
+& \ \ \ {\ \rm |}$n\leftarrow n+1$\\
+& \ \ \ {\ \rm |}$P\leftarrow P*n$\\
+& \ \ \ {\ \rm |}$s\leftarrow s+1/P$\\
+& Renvoyer $s$. 
+\end{tabular}
+
+
+
+\textbf{Exercice~\ref{exLecture}}
+
+1) Cet algorithme ne fonctionne pas. En effet, à la première ligne du «~tant que~», $b$ devient égal à $a$, donc on obtient $b=0$ à la deuxième ligne du «~tant que~». On peut corriger le problème en rajoutant une variable intermédiaire. 
+
+ \begin{tabular}{ll}
+\textbf{Algorithme}($a,b$):\\
+& si $a<=b$:\\
+&\ \ \ {\ \rm |} $b,a\leftarrow a,b$\\
+
+& Tant que $r\neq 0$ :  \\
+&\ \ \ {\ \rm |} $r \leftarrow a\%b$ \\
+&\ \ \  {\ \rm |}$a\leftarrow b$\\
+& $b\leftarrow r$ \\
+& Renvoyer $a$. 
+\end{tabular}
+
+
+2) Cet algorithme ne fonctionne pas. En effet, à chaque fois que random() est utilisée elle produit un nouveau nombre pseudo-aléatoire. Par exemple il est possible que pour un $t$ donné, aucune des conditions imposées dans les «~si~» ne soit vérifiée. On peut le corriger de la façon suivante : 
+
+
+ \begin{tabular}{ll}
+\textbf{Algorithme}:\\
+& $x=0$ \\
+& Pour $t$ allant de $1$ à $50$ faire :\\
+& $r\leftarrow \texttt{random}()$\\
+&\ \ \ {\ \rm |} Si $r<1/3$: \\
+&\ \ \ \ \ \ {\ \rm |} $x\leftarrow x+1$\\
+&\ \ \ {\ \rm |} Si $r>=1/3$ et $r<2/3$: \\
+&\ \ \ \ \ \ {\ \rm |} $x\leftarrow x+2$\\
+&\ \ \ \ {\ \rm |}Si $r>2/3$ \\
+&\ \ \ \ \ \ {\ \rm |} $x\leftarrow x-3$\\
+& Renvoyer $x$. 
+\end{tabular}
+
+
+\end{document}
+
+
