@@ -14,13 +14,13 @@ Objectifs principaux de l'UE
 - Apprendre à écrire des algorithmes pour répondre à une question donnée et à les implémenter en python.
 - Apprendre à justifier en détail la terminaison et correction d'algorithmes et à calculer ou estimer leur complexité. 
 
-Prochaines interrogations et épreuves
+Prochaines interrogations et épreuves, programme des épreuves
 ---
 
-Interrogation courte à la rentrée.
-Partiel la semaine du 12 novembre.
-Autres interrogations par la suite, et sans doute un TP noté.
-Examen terminal en janvier.
+- Interrogation courte à la rentrée. Programme, tout jusqu'au master theorem non compris. Preuves de complexité, terminaison et correction, tris, exercices de DL et de petit/grand O.
+- Partiel la semaine du 12 novembre. Programme : tout ce qui aura été fait avant le partiel, y compris master theorem, analyse des algorithmes récursifs à l'aide du tableau avec l'arbre des sous-problèmes etc.
+- Autres interrogations par la suite, et sans doute un TP noté.
+- Examen terminal en janvier.
 
 Les étudiants AED ne suivant qu'un seul des deux EC sont libérés après les partiels de novembre.
 
