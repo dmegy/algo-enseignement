@@ -27,7 +27,7 @@ Si $n=0$, la fonction ne rentre pas dans la boucle et renvoie $1$ ce qui est bie
 Notons, pour $i \in [[1,n]]$, $r_i$ la valeur de la variable ```result``` à  la fin de la boucle d'indice $i$.
 Prouvons que pour tout $i \in [[1,n]]$, $r_i = i!$. On le fait par récurrence sur $i$.
 - Initialisation :  On a bien $r_1=1$.
-- Hérédité : Soit $i \in [[1,n-1]]$. Suposons que $r_i = i!$. Montrons que $r_{i+1} = (i+1)!$. L'instruction dans la boucle implique $r_{i+1} = r_i \times  (i+1)$, donc en utilisant l'hypothèse de récurrence, on a bien $r_{i+1} = r_i = (i+1)!$.
+- Hérédité : Soit $i \in [[1,n-1]]$. Suposons que $r_i = i!$. Montrons que $r_{i+1} = (i+1)!$. L'instruction dans la boucle implique $r_{i+1} = r_i \times  (i+1)$, donc en utilisant l'hypothèse de récurrence, on a bien $r_{i+1} = (i+1)!$.
 
 Ceci termine la récurrence.
 Conclusion : à la fin de la dernière boucle, c'est-à-dire de la boucle d'indice $n$, on a $r_n = n!$.
@@ -139,7 +139,7 @@ Les appels récursifs se font avec des valeurs strictement décroissantes, donc 
 Preuve de correction : 
 Pour $k>0$, notons $P(k)$ l'assertion "si $n$ est un entier à $k$ chiffres, chiffresBase10(n) renvoie la liste des chiffres de son écriture décimale."
 - Initialisation : P(1) est vraie
-- Hérédité : Soit $k>0$ et supposons $P(k)$ vraie. Soit $n$ entier à $k+1$ chiffres, c'est-à-dire $10^{k} <= n <10^{k+1}$. Alors $n//10$ est un entier à $k$ chiffres, et ce sont les $k$ premiers chiffres en base $10$ de $n$ (car $n = 10(n//10)+(n%10)$). Par ailleurs $n%10$ est le dernier chiffre.
+- Hérédité : Soit $k>0$ et supposons $P(k)$ vraie. Soit $n$ entier à $k+1$ chiffres, c'est-à-dire $10^{k} \leq n < 10^{k+1}$. Alors $n//10$ est un entier à $k$ chiffres, et ce sont les $k$ premiers chiffres en base $10$ de $n$ (car n = 10(n//10)+(n%10)). Par ailleurs n%10 est le dernier chiffre.
 
 
 
