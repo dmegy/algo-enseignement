@@ -1,0 +1,147 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=3cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{layout}
+\usepackage{fancyhdr}
+
+\newtheorem*{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem*{nota}{Notation}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rem2}{Remarques}
+\newtheorem{de2}{Définition}
+\newtheorem{pro2}[de2]{Propriété}
+\newtheorem{thm2}[de2]{Théorème}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage{comment}
+
+\input{macros_listings}
+
+\title{}
+
+\date{}
+\begin{document}
+
+
+\pagestyle{fancy}
+
+\fancyhead{}
+ \fancyfoot{}
+
+ \lhead{ 2024/2025 \\  L3 Mathématiques
+}
+\chead{\textbf{ Algorithmes pour l'enseignement}\\} 
+ \rhead{ Université de Lorraine \\  }
+
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+
+
+
+\newcommand{\md}[3]{#1\ \equiv \ #2 \! \! \! \! \! \pmod {#3} }
+\newcommand{\nmd}[3]{#1 \not \equiv #2 \! \! \! \! \!  \pmod {#3} }
+\newcommand{\mda}[3]{#1 \equiv #2 \! \!  \pmod {#3} }
+\newcommand{\nmda}[3]{#1 \not \equiv #2 \! \! \pmod {#3} }
+\newcommand{\mo}[2]{#1 \! \! \! \! \! \pmod #2 }
+\newcommand{\moa}[2]{#1 \! \!  \pmod {#2} }
+
+\thispagestyle{fancy}
+
+\begin{center}
+%    \HRule \\[0.6cm]
+    { \huge \bfseries
+Interrogation du 30 septembre 2024
+     \\ [0cm] }
+    \HRule \\[0.5cm]
+\end{center}
+
+\begin{center}
+\textbf{durée : 1 heure}
+\end{center}
+
+
+
+Pour chacun des algorithmes, on justifiera avec soin : \begin{itemize}
+\item[•] que l'algorithme termine (si une boucle «~tant que~» est utilisée).
+
+\item[•] que l'algorithme renvoie bien le résultat demandé.
+\end{itemize}
+
+Une réponse non justifiée sera notée sur les trois quarts des points.
+
+On peut utiliser les opérateurs \verb+//+ et \verb+%+ sur les entiers. On évitera d'utiliser des fonctionnalités trop avancées de python, surtout celles non vues en TD : on rédigera en pseudo-code avec des techniques élémentaires. En cas de doute, poser simplement la question.
+
+
+
+
+\bigskip
+
+Pour les boucles «~pour~», on adoptera les conventions suivantes. Si $a,b\in \Z$, «~pour $i$ allant de $a$ à $b$~» signifie «~pour $i$ parcourant en croissant l'intervalle $\llbracket a,b\rrbracket$~». Lorsque $b<a$, cet intervalle est vide, donc aucune des instructions dans la boucle «~pour~» n'est effectuée (ce sera par exemple le cas si on écrit «~pour $i$ allant de $1$ à $n$~», avec $n=0$). On n'utilisera pas d'autre type de boucles «~pour~» (décroissantes, saut d'indice etc) : dans ces situations, on utilisera l'instruction «~tant que~».
+
+%On pourra utiliser l'instruction «~pour $i$ allant en décroissant de $b$ à $a$~», qui signifie (si $b\geq a$) «~pour $i$ prenant successivement les valeurs $b$, $b-1$,$\ldots$, $a$~». Lorsque $a>b$, aucune instruction dans la boucle «~pour~» n'est alors effectuée.
+
+
+
+
+
+\begin{ex}
+Écrire un algorithme itératif, puis un autre récursif, recevant un entier $n$ naturel en entrée, et retournant $n!$ en sortie.
+\end{ex}
+
+\begin{ex}
+Écrire un algorithme itératif, puis un autre récursif, recevant une liste non vide de nombres en entrée, et retournant la valeur minimale dans cette liste.
+\end{ex}
+
+
+\begin{ex}\label{base10}
+Écrire un algorithme itératif, puis un autre récursif, recevant un entier naturel et retournant la liste de ses chiffres en base $10$ (dans l'ordre usuel : le chiffre des unités en dernier).
+\end{ex}
+
+Dans la suite, on utilise des chaînes de caractères. On les manipule comme des listes, en particulier la concaténation sera notée \og $+$\fg, et la longueur s'obtient avec une fonction  \verb+longueur+ que l'on peut librement utiliser. Les différentes lettres d'une chaîne de caractères sont accessibles par leur indice comme une liste : $c[0]$, $c[1]$ etc.
+Une chaîne de caractères \textbf{peut être vide}, auquel cas elle est de longueur zéro.
+
+\begin{ex}\label{est_un_carre}
+On dit qu'une chaîne de caractères $s$ est un carré s'il existe une chaîne de caractères $a$ telle que $s$ soit égale à $a$ concaténée avec elle-même. Par exemple, \verb+'papa'+ est un carré, mais pas \verb+'maman'+. 
+\begin{enumerate}
+\item Écrire une fonction \verb+est_un_carre(c)+ qui prend en entrée une chaîne de caractères et qui retourne \verb+True+ si c'est un carré et \verb+False+ sinon.
+\item Si la chaîne en entrée est de longueur $n$, majorer le nombre de comparaisons entre lettres effectuées par la fonction dans le pire des cas.
+\end{enumerate}
+\end{ex}
+
+\begin{ex}\label{contient_un_carre}
+On dit qu'une chaîne de caractères $s$ contient un carré si c'est la concaténation de trois chaînes de caractères $a$, $b$ et $c$ (dans cet ordre) et que $b$ est un carré \textbf{non vide}.
+Par exemple, \verb+'maman'+ contient un carré (prendre $a$ la chaîne vide, $b$ la chaîne \verb+'mama'+ qui est bien un carré et $c$ la chaîne \verb+'n'+). 
+\begin{enumerate}
+\item Écrire une fonction \verb+contient_un_carre(s)+ qui prend en entrée une chaîne de caractères et qui retourne \verb+True+ si elle contient un carré et \verb+False+ sinon. On pourra utiliser la fonction \verb+est_un_carre+ de l'exercice précédent.
+\item Si la chaîne en entrée est de longueur $n$, majorer le nombre de comparaisons entre lettres effectuées par la fonction dans le pire des cas.
+\end{enumerate}
+\end{ex}
+
+
+
+\begin{ex}\label{pythagore}
+Un triplet pythagoricien ordonné est un triplet d'entiers naturels non nuls $(a,b,c)$ vérifiant $a\leq b \leq c$ et $a^2+b^2 = c^2$.
+
+Écrire une fonction \verb+triplets_pyathgoriciens(N)+ prenant un entier $N$ naturel en entrée et retournant la liste de tous les triplets pythagoriciens ordonnés $(a,b,c)$ avec $c\leq N$. Chaque triplet pythagoricien sera retourné sous forme de liste, donc la fonction doit retourner une liste de listes. Par exemple, \verb+triplets_pyathgoriciens(2)+ doit retourner $[]$, \verb+triplets_pyathgoriciens(6)+ doit retourner $[[3,4,5]]$ (liste contenant un unique triplet pythagoricien ordonné), et 
+\verb+triplets_pyathgoriciens(13)+ doit retourner une liste contenant trois éléments, ces éléments devant être $[3,4,5]$, $[6,8,10]$ et $[5,12,13]$ dans un ordre que l'on n'impose pas.
+\end{ex}
+
+\end{document}
