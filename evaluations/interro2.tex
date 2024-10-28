@@ -42,10 +42,10 @@
 \fancyhead{}
  \fancyfoot{}
 
- \lhead{ 2024/2025 \\  L3 Mathématiques
+ \lhead{ 2024/2025
 }
-\chead{\textbf{ Algorithmes pour l'enseignement}\\} 
- \rhead{ Université de Lorraine \\  }
+\chead{\textbf{ Algorithmes pour l'enseignement}} 
+ \rhead{ Université de Lorraine}
 
 \newcommand{\lb}{\llbracket}
 \newcommand{\rb}{\rrbracket}
@@ -163,9 +163,12 @@ Exemple : pour évaluer $X^3+3X^2+X+5$ en $a$, on calcule $a+3$, on multiplie le
 
 \newpage
 
-{\Huge Attention, corrigé en cours de rédaction}
+\section*{Correction}
 
-\paragraph{Correction de l'exercice 1 }$ $
+Signalez les éventuelles fautes de frappe, ou tout simplement ce qui ne vous semble pas clair.
+
+
+\subsection*{Correction de l'exercice 1}
 Algorithme récursif : 
 \begin{lstlisting}[language=Python]
 def expo(a,n):
@@ -173,10 +176,12 @@ def expo(a,n):
 		return 1
 	return a * expo(a,n-1)
 \end{lstlisting}
-Terminaison : la variable $n$ passée en argument dans l'appel récursif diminue de un à chaque appel, en temps fini elle vaut $0$, étape à laquelle les appels s'arrêtent.\\
-Terminaison, version plus détaillée : on prouve que l'appel à \verb+exp(a,n)+ effectue exactement $n+1$ appels en tout. Preuve : par récurrence : \verb+exp(a,0)+ effectue exactement un appel, le premier.  Ensuite, l'appel de \verb|exp(a,n+1)| effectue un autre appel à \verb+exp(a,n)+, ce qui fait $1+(n+1) = n+2$ appels d'après l'hypothèse de récurrence. \\
-Validité : On fixe $a$. Prouvons par récurrence sur $n \in \N$ que \verb+expo(a,n)+ retourne bien $a^n$. Par définition de la fonction, c'est vrai pour $n=0$. Montrons l'hérédité. Soit $n\in\N$, supposons que \verb+expo(a,n)+ retourne bien $a^n$ et montrons que  \verb|expo(a,n+1)| retourne bien $a^{n+1}$. Par définition de la fonction, comme $n+1 \neq 0$, \verb|expo(a,n+1)|  retourne \verb+a * expo(a,n)+. D'après l'hypothèse de récurrence,  ceci est égal à  $a\times a^n = a^{n+1}$.\\
+\begin{itemize}
 
+\item \textbf{Terminaison} : la variable $n$ passée en argument dans l'appel récursif diminue de un à chaque appel, en temps fini elle vaut $0$, étape à laquelle les appels s'arrêtent.
+\item \textbf{Terminaison}, version plus détaillée : on prouve que l'appel à \verb+exp(a,n)+ effectue exactement $n+1$ appels en tout. Preuve : par récurrence : \verb+exp(a,0)+ effectue exactement un appel, le premier.  Ensuite, l'appel de \verb|exp(a,n+1)| effectue un autre appel à \verb+exp(a,n)+, ce qui fait $1+(n+1) = n+2$ appels d'après l'hypothèse de récurrence.
+\item \textbf{Validité} : Soit $a \in \mathbb R$. Prouvons par récurrence sur $n \in \N$ que \verb+expo(a,n)+ retourne bien $a^n$. Par définition de la fonction, c'est vrai pour $n=0$. Montrons l'hérédité. Soit $n\in\N$, supposons que \verb+expo(a,n)+ retourne bien $a^n$ et montrons que  \verb|expo(a,n+1)| retourne bien $a^{n+1}$. Par définition de la fonction, comme $n+1 \neq 0$, l'instruction \verb|expo(a,n+1)|  retourne \verb+a * expo(a,n)+. D'après l'hypothèse de récurrence,  ceci est égal à  $a\times a^n = a^{n+1}$.
+\end{itemize}
 Algorithme itératif :
 
 \begin{lstlisting}[language=Python]
@@ -186,15 +191,17 @@ def expo(a,n):
 		r = r * a
 	return r
 \end{lstlisting}
-Terminaison : la boucle \textit{for} tourne exactement $n$ fois.\\
-Validité : Pour $n=0$, la fonction renvoie bien $1$. Montrons la correction pour $n\geq 1$. Pour $k$ entre $1$ et $n$, notons $r_k$ la valeur de la variable \verb+r+ à la fin de la boucle d'indice $k$.\\
+
+\begin{itemize}
+\item \textbf{Terminaison} : la boucle \textit{for} tourne exactement $n$ fois.
+\item \textbf{Validité} : Pour $n=0$, la fonction renvoie bien $1$. Montrons la correction pour $n\geq 1$. Pour $k$ entre $1$ et $n$, notons $r_k$ la valeur de la variable \verb+r+ à la fin de la boucle d'indice $k$.\\
 Montrons par récurrence sur $k$ que pour tout $k$ entre $1$ et $n$, $r_k = a^k$.\\
 Pour $k=1$ c'est vrai.\\
 Soit $1\leq k \leq n-1$, supposons $r_k = a^k$ et montrons $r_{k+1} = a^{k+1}$. Dans la boucle d'indice $k+1$, l'affectation se traduit par $r_{k+1} = ar_k$. Par hypothèse de récurrence, $r_k=a^k$, donc on a bien $r_k=a^{k+1}$.\\
 Fin de la preuve de validité : en sortie de boucle, c'est-à-dire à la fin de la boucle d'indice $n$, on a bien $r_n = a^n$.
+\end{itemize}
 
-
-\paragraph{Correction de l'exercice 2 }$ $
+\subsection*{Correction de l'exercice 2}
 
 \begin{lstlisting}[language=Python]
 def evalPoly(L,a):
@@ -204,31 +211,35 @@ def evalPoly(L,a):
 		r += L[k] * expo(a,k)
 	return r
 \end{lstlisting}
-Terminaison : on a une boucle for qui tourne un nombre prédéterminé de fois, et qui contient une fonction \verb+expo+ qui termine.\\
+\begin{itemize}
+\item \textbf{Terminaison} : on a une boucle for qui tourne un nombre prédéterminé de fois, et qui contient une fonction \verb+expo+ qui termine.
+\item \textbf{Validité} : Notons $r_k$ la valeur de la variable \texttt{r} à la fin de la boucle d'indice $k$.
+Alors, on a $r_k = \sum_{j=0}^k c_ja^j$. (Preuve : récurrence sur $k\geq 0$.)\\
+Conclusion : après la fin de la boucle for, la variable \verb+r+ vaut donc $r_d = \sum_{j=0}^d c_ja^j = P(a)$.
+\item \textbf{Complexité} : Notons $n$ la longueur de la liste reçue en entrée.
+À l'intérieur de la boucle, la fonction \verb+expo(a,k)+ s'exécute en  $O(k)$, donc en $O(n)$ en majorant.
+La fonction \verb+evalPoly+ est de complexité $O(n^2)$ avec $n$ la longueur de la liste. 
+Remarque : comme $n=d+1$ avec $d$ le degré du polynôme en entrée, on peut aussi dire que la complexité est en $O(d^2)$.
+\end{itemize}
 
-Validité : Notons $r_k$ la valeur de $r$ à la fin de la boucle d'indice $k$.
-Alors, on a $r_k = \sum_{j=0}^k c_ja^j$. Preuve : récurrence sur $k$.\\
-En fin de boucle, la variable \verb+r+ vaut donc $r_d = \sum_{j=0}^d c_ja^j = P(a)$.\\
+\subsection*{Correction de l'exercice 3}
 
-Complexité : la fonction \verb+expo(a,k)+ est de complexité $O(k)$, donc $O(n)$ en majorant.
-La fonction \verb+evalPoly+ est de complexité $O(n^2)$ avec $n$ la longueur de la liste.\\
-
-
-\paragraph{Correction de l'exercice 3 }\par
-C'est exponentiation rapide, avec une implémentation légèrement différente de celle vue en cours.\\
-\textbf{Terminaison} : Pour tout entier $n$, la suite d'entiers $(u_k)$ définie par $u_0=n$ et la relation de récurrence $u_{k+1} = u_k // 2$ est une suite qui décroit strictement jusqu'au moment où elle stationne à zéro. L'algorithme termine donc.\\
-Terminaison, version plus précise : si $u_k\geq 2$, alors par définition de la division euclidienne, $u_{k+1}$ est le nombre dont l'écriture en base deux est obtenue à partie de celle de $u_k$ en enlevant le chiffre des unités. Ce nombre a exactement un chiffre de moins que $u_k$ en base deux. Sinon, c'est-à-dire si $u_k<2$, alors $u_{k+1}=0$ et la récursivité s'arrête à l'étape d'après. Si $\ell$ est le nombre de chiffres en base deux de $n\neq 0$, alors \verb+f(a,n)+ provoque exactement $\ell$ autres appels récursifs à la fonction. Par exemple \verb+f(a,10)+ provoque quatre autres appels.\\
-\textbf{Validité} : montrons que la fonction \verb+f(a,n)+ retourne $a^n$. Pour $n\in\N$, on note $P(n)$ l'assertion : \og pour tout\footnote{attention ici il est important de mettre le pour tout $a$ dans l'assertion à prouver, car on va appliquer l'hypothèse de récurrence sur une autre valeur de $a$.} réel $a$, la fonction \verb+f(a,n)+ retourne $a^n$.\fg Montrons maintenant par récurrence forte l'assertion $\forall n\in\N, P(n)$.\\
+C'est l'exponentiation rapide, avec une implémentation légèrement différente de celle vue en cours.
+\begin{itemize}
+\item \textbf{Terminaison} : Pour tout entier $n$, la suite d'entiers $(u_k)$ définie par $u_0=n$ et la relation de récurrence $u_{k+1} = u_k // 2$ est une suite qui décroit strictement jusqu'au moment où elle atteint zéro. L'algorithme termine donc.
+\item \textbf{Terminaison}, autre rédaction, par l'absurde\footnote{Pour les algorithmes récursifs, il est fréquent de rédiger des preuves de terminaison par l'absurde, en utilisant des suites d'entiers positifs strictement décroissantes ou plus généralement des ordres bien fondés : des relations d'ordre pour lesquelles toute suite décroissante est stationnaire.} : Supposons par l'absurde que l'algorithme ne termine pas. La suite $u_k$ est une suite décroissante d'entiers positifs donc stationnaire. Comme par hypothèse l'algorithme ne termine pas, cette suite n'est jamais nulle, elle stationne donc à un entier strictement positif, ce qui est absurde.
+\item \textbf{Terminaison}, version plus précise avec calcul du nombre d'appels : si $u_k\geq 2$, alors par définition de la division euclidienne, $u_{k+1}$ est le nombre dont l'écriture en base deux est obtenue à partie de celle de $u_k$ en enlevant le chiffre des unités. Ce nombre a exactement un chiffre de moins que $u_k$ en base deux. Sinon, c'est-à-dire si $u_k<2$, alors $u_{k+1}=0$ et la récursivité s'arrête à l'étape d'après. Si $\ell$ est le nombre de chiffres en base deux de $n\neq 0$, alors \verb+f(a,n)+ provoque exactement $\ell$ autres appels récursifs à la fonction. Par exemple \verb+f(a,10)+ provoque quatre autres appels.
+\item \textbf{Validité} : montrons que la fonction \verb+f(a,n)+ retourne $a^n$. Pour $n\in\N$, on note $P(n)$ l'assertion : \og pour tout\footnote{attention ici il est important de mettre le pour tout $a$ dans l'assertion à prouver, car on va appliquer l'hypothèse de récurrence sur une autre valeur de $a$.} réel $a$, la fonction \verb+f(a,n)+ retourne $a^n$.\fg Montrons maintenant par récurrence forte l'assertion $\forall n\in\N, P(n)$.\\
 Initialisation : $P(0)$ est vraie par définition de la fonction.\\
 Hérédité : soit $n\in \N$, supposons $P(k)$ vraie pour tout $j\leq n$ et montrons $P(n+1)$. Soit donc $a\in \R$. Comme $n+1>0$, la première condition est sautée. Si $n+1$ est pair, la quantité $(n+1)//2$ vaut donc $(n+1)/2$. La fonction retourne $f(a^2,(n+1)/2)$. Comme $(n+1)/2\leq n$, l'hypothèse de récurrence forte implique que $f(a^2,(n+1)/2) = (a^2)^{(n+1)/2} = a^{n+1}$.
-Si par contre $n+1$ est impair, alors $(n+1)//2 =n/2\leq n$, et toujours par hypothèse de récurrence forte, on a $a\times f(a^2,n/2) = a\times(a^2)^{n/2} = a\times a^n=a^{n+1}$.\\
-\textbf{Complexité} : Étant donné un exposant d'entrée $n$, notons $p$ le nombre d'appels à la fonction qui vont être effectués, y compris le premier appel.
+Si par contre $n+1$ est impair, alors $(n+1)//2 =n/2\leq n$, et toujours par hypothèse de récurrence forte, on a $a\times f(a^2,n/2) = a\times(a^2)^{n/2} = a\times a^n=a^{n+1}$.
+\item \textbf{Complexité} : Étant donné un exposant d'entrée $n$, notons $p$ le nombre d'appels à la fonction qui vont être effectués, y compris le premier appel.
 À l'intérieur de la fonction, hors récursivité, la complexité est en $O(1)$ (entre une et deux comparaisons, moins de deux produits, moins d'une division).
 La complexité de l'appel total, récursivité comprise, est donc en $O(p)$. Comme $p  = O(\log_2 n)$, on en déduit que la complexité totale est en $O(\log_2 n)$.\\
 Remarque : comme dans la preuve précise de terminaison, on peut calculer $p$ en fonction de $n$ : c'est un de plus que le nombre de chiffres en base deux de $n$, si $n>0$. (Par exemple, si $n=2^k$, alors $p=k+2$.) 
+\end{itemize}
 
-
-\paragraph{Correction de l'exercice 4 }$ $
+\subsection*{Correction de l'exercice 4}
 
 Proposition d'algorithme itératif d'exponentiation plus rapide que l'algorithme naïf: 
 \begin{lstlisting}[language=Python]
@@ -246,14 +257,14 @@ def f(a,n):
 		n = n - k
 	return r
 \end{lstlisting}
-
-\textbf{Preuve de terminaison} : la boucle la plus profonde termine car la suite $2^k$ est non bornée.
-Après l'arrêt de la boucle while la plus profonde, l'instruction \verb+n = n-k+ fait décroitre strictement $n$ car $k\geq 1$. Ceci montre que la boucle extérieure s'arrête en temps fini.\\
-Terminaison, version plus précise : le nombre de chiffres de $n$ en base deux décroit strictement à chaque passage dans la boucle extérieure.\\
-
-Preuve de validité : notons $n_0$ et $r_0$ les valeurs initiales de $n$ et $r$, avant la boucle while. Notons $n_i$ et $r_i$ les valeurs de $n$ et $r$ à la fin du $i$-ème passage dans la boucle while extérieure.
+\begin{itemize}
+\item \textbf{Terminaison} : la boucle la plus profonde termine car la suite $2^k$ est non bornée.
+Après l'arrêt de la boucle while la plus profonde, l'instruction \verb+n = n-k+ fait décroitre strictement $n$ car $k\geq 1$. Ceci montre que la boucle extérieure s'arrête en temps fini.
+\item \textbf{Terminaison}, autre version : le nombre de chiffres de $n$ en base deux décroit strictement à chaque passage dans la boucle extérieure.
+\item \textbf{Validité} : notons $n_0$ et $r_0$ les valeurs initiales de $n$ et $r$, avant la boucle while. Notons $n_i$ et $r_i$ les valeurs de $n$ et $r$ à la fin du $i$-ème passage dans la boucle while extérieure.
 Alors, on a toujours, en fin de boucle extérieure : $a^{n_0} = r_i \times a^{n_i}$. (Récurrence sur $i$.)
 En fin de boucle, on a $n_i = 0$ et donc $r_i= a^{n_0}$, qui est la valeur retournée.
+\end{itemize}
 
 Plus malin, avec une seule boucle while, en mettant en mémoire les exposants à rajouter dans le cas impair : 
 \begin{lstlisting}[language=Python]
@@ -276,7 +287,8 @@ Exercice : comprendre le fonctionnement de cette fonction, prouver la terminaiso
 
 
 
-\paragraph{Correction de l'exercice 5 }$ $
+\subsection*{Correction de l'exercice 5}
+
 On fait tout simplement , en notant \verb+exporapide+ une fonction d'exponentiation rapide comme celle donnée plus haut : 
 
 \begin{lstlisting}[language=Python]
@@ -295,7 +307,8 @@ On note $d$ le degré du polynôme en entrée et on calcule la complexité en fo
 Chacun des $d+1$ appels est donc en $O(\log d)$. 
 La complexité totale est en $O(d\log d)$.
 
-\paragraph{Correction de l'exercice 6}$ $
+\subsection*{Correction de l'exercice 6}
+
 \begin{lstlisting}[language=Python]
 def evalPolyHorner(L,a):
 	d = len(L)-1
@@ -307,9 +320,10 @@ def evalPolyHorner(L,a):
 	return r
 \end{lstlisting}
 
-Preuve de terminaison : la variable $k$ décroit de $1$, elle finit donc par être nulle, moment où la boucle s'arrête. On pourrait aussi réécrire l'algorithme avec une boucle \og for\fg, d'ailleurs.
+\begin{itemize}
 
-Preuve de validité : notons $P = \sum_{k=0}^d c_kX^k$ le polynôme.
+\item \textbf{Terminaison} : la variable $k$ décroit de $1$, elle finit donc par être nulle, moment où la boucle s'arrête. On pourrait aussi réécrire l'algorithme avec une boucle \og for\fg, d'ailleurs.
+\item \textbf{Validité} : notons $P = \sum_{k=0}^d c_kX^k$ le polynôme.
 Pour $k$ entre $d$ et zéro, notons $r_k$ la valeur de la variable $r$ juste avant le test d'entrée de la boucle d'indice $k$. 
 On a $r_d = c_d$, $r_{d-1} = ac_d+c_{d-1}$, $r_{d-2} = a^2c_d + ac_{d-1}+c_{d-2}$.
 Plus généralement, pour $k \in \llbracket 0,D\rrbracket$, notons $A(k)$ l'assertion «$r_k = \sum_{j=k}^{d}c_ja^{j-k}$».
@@ -324,5 +338,5 @@ r_{k-1} = ar_k+c_{k-1}
  = \sum_{j=k-1}^{d}c_ka^{j-(k-1)}.
 \]
 On a donc $r_0 = \sum_{j=0}^{d}c_ja^{j} = P(a)$, puis $k$ passe à $-1$, et au test suivant la boucle s'arrête.  L'algorithme retourne alors la bonne valeur.
-
+\end{itemize}
 \end{document}
