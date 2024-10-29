@@ -35,6 +35,8 @@ def moyenne(L: list) -> float:
 	# maintenant, on écrit le code
 ```
 
+Pour de plus grands projets, il existe des modules spécialisés pour tester tout le code d'un grand nombre de manières en couvrant tous les cas de figure, y compris avec des tests aléatoires.
+
 
 Gestion des erreurs
 ---
