@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=3cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage[french]{babel}
+\usepackage{layout}
+\usepackage{fancyhdr}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{float}
+\newtheorem*{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem*{nota}{Notation}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rem2}{Remarques}
+\newtheorem{de2}{Définition}
+\newtheorem{pro2}[de2]{Propriété}
+\newtheorem{thm2}[de2]{Théorème}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\title{}
+
+\date{}
+\begin{document}
+
+
+\pagestyle{fancy}
+
+\fancyhead{}
+ \fancyfoot{}
+
+ \lhead{ 2023/2024 \\  L3 Mathématiques
+}
+\chead{\textbf{Algorithmes pour l'enseignement}\\} 
+ \rhead{  Université de Lorraine \\ }
+
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
+
+\newcommand{\md}[3]{#1 \equiv #2 \! \! \! \! \! \pmod {#3} }
+\newcommand{\nmd}[3]{#1 \not \equiv #2 \! \! \! \! \!  \pmod #3 }
+\newcommand{\mda}[3]{#1 \equiv #2 \! \!  \pmod #3 }
+\newcommand{\nmda}[3]{#1 \not \equiv #2 \! \! \pmod #3 }
+\newcommand{\mo}[2]{#1 \! \! \! \! \! \pmod #2 }
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+
+\thispagestyle{fancy}
+
+\begin{center}
+%    \HRule \\[0.6cm]
+    { \huge \bfseries
+    TP n$^{\boldsymbol{\circ}}$7 : Évaluation
+     \\ [0cm] }
+    \HRule \\[0.5cm]
+\end{center}
+
+
+\begin{ex}
+\begin{enumerate}
+\item Écrire un programme qui prend en entrée $n\in \N$ et qui renvoie $n!$. Écrire une version itérative et une version récursive.
+
+\item Écrire un programme qui prend en entrée $x\in \R$, $n\in \N$ et qui renvoie $f_n(x)=\sum_{k=0}^n \frac{x^k}{k!}$. 
+
+\item Représenter sur un même graphe $f_5, f_{10}$ et $\exp$ entre $-10$ et $10$. Mettre une légende (qui indiquera à quoi correspondent chaque courbe, par exemple $y=\exp(x)$), représenter $\exp$ en rouge, $f_5$ en vert et $f_{10}$ en bleu, et représenter $\exp$ avec un trait plus épais que $f_5$ et $f_{10}$.
+
+\end{enumerate}
+\end{ex}
+
+
+\begin{ex}
+\begin{enumerate}
+
+
+\item Faire la liste des $50$ premiers  nombres premiers.
+
+\item Un nombre premier de Sophie Germain est un nombre premier $p$ tel que $2p+1$ est premier. Faire la liste des $50$ premiers nombres premiers de Sophie Germain.
+\end{enumerate}
+
+\end{ex}
+
+\begin{ex}
+
+Soit la suite de Fibonacci, définie par~:
+
+\begin{displaymath}
+  \left\{
+    \begin{array}[l]{rcl}
+      u_0 &=& 0\\
+      u_1 &=& 1\\
+      u_{n} &=& u_{n-1} + u_{n-2},  \quad \forall n\geq 2.
+    \end{array}\right.
+\end{displaymath}
+
+\begin{enumerate}
+
+
+
+\item Écrire un programme \texttt{Fibo\_modulaire}(m,n) qui prend en entrée deux entiers positifs $m,n$ et qui renvoie la liste des $F_i\%m$, pour $i\in \llbracket 0,n\rrbracket$. 
+
+\item Écrire un programme \texttt{triplet}(L) qui prend en entrée une liste $L$ de nombres $L=[l_0,\ldots,l_n]$ et qui renvoie la liste des triplets de la forme $(l_i,l_{i+1},l_{i+2})$,  tels que $i\in \llbracket 0,n-2\rrbracket$ et $l_{i+1}<l_{i}<l_{i+2}$.
+
+\item Écrire un programme \texttt{alea}($n$), qui prend en entrée un entier $n$ et qui renvoie une liste de $n$ éléments aléatoires entre $1$ et $10^5$ (on pourra utiliser la commande \texttt{random.randint}).
+
+\item Si on prend un triplet de réels « au hasard » $x_0,x_1,x_2$, l'inégalité $x_1<x_0<x_2$ doit se produire une fois sur $6$. Combien de triplets obtenez vous avec la commande \texttt{triplets}(\texttt{alea}($10^5$)) ?
+
+\item Combien de triplets obtenez-vous avec la commande  \texttt{triplets}(\texttt{fibo\_modulaire}($1000,10^5$)) ?
+\end{enumerate}
+\end{ex}
+
+
+\begin{ex}
+ Écrire un programme qui prend en entrée  un entier $m$ et une liste   $M$ d'entiers de $\llbracket 0,m-1\rrbracket$ et  qui renvoie la liste $N=[n_0,,\ldots,n_{m-1}]$ telle que pour tout $i\in \llbracket 0,m-1\rrbracket$, $n_i=|\{j\in \llbracket 0,m-1\rrbracket \mid M[j]=i\}|$. 
+
+\end{ex}
+
+\begin{ex}
+\begin{enumerate}
+\item Écrire un programme qui prend en entrée deux listes triées $L_1$ et $L_2$ et qui renvoie la liste triée contenant la réunion des deux listes.
+\item En déduire un programme qui prend une liste en entrée et qui la trie à l'aide d'un tri fusion.
+\end{enumerate}
+\end{ex}
+
+
+
+\begin{ex}(méthode des rectangles)
+
+Soient $a,b\in \R$ et $f:[a,b]\rightarrow \R$ une fonction de classe $\mathcal{C}^1$. Pour $n\in \N^*$, on pose $S_n(f)=\frac{1}{n}\sum_{i=0}^{n-1} f(a+i(b-a)/n)$. On rappelle que $S_n(f)\underset{n\to \infty}{\rightarrow} \int_a^b f$ (et que $S_n(f)-\int_a^b f=O(\frac{1}{n})$).  On suppose que l'on a défini une fonction $f$ sur Python (à l'aide de la fonction def f(x): ... return ...).
+
+\begin{enumerate}
+\item Écrire un programme qui prend en entrée  $a,b\in \R$ et $n\in \N^*$ et qui renvoie $S_n(f)$. 
+
+\item Calculer $S_n(f)$ pour différentes valeurs de $n$, pour $f=\exp$, $a=0$, $b=1$. Comparer avec le résultat   que l'on obtient avec la fonction \texttt{quad}(f,a,b) (après avoir importé "quad" de scipy.integrate).
+
+\item Écrire un programme prenant en entrée $a,b,n$ et qui renvoie une figure représentant le graphe de $f$ sur $[a,b]$ ainsi que les rectangles correspondant à $S_n(f)$. Les rectangles devront être tous d'une même couleur et en pointillés.
+\end{enumerate}
+
+\end{ex}
+
+
+\end{document}
