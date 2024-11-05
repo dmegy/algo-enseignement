@@ -1,0 +1,294 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=3cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{layout}
+\usepackage{fancyhdr}
+\usepackage{url}
+
+\newtheorem*{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem*{nota}{Notation}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rem2}{Remarques}
+\newtheorem{de2}{Définition}
+\newtheorem{pro2}[de2]{Propriété}
+\newtheorem{thm2}[de2]{Théorème}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage{comment}
+
+\input{macros_listings}
+
+\title{}
+
+\date{}
+\begin{document}
+
+
+\pagestyle{fancy}
+
+\fancyhead{}
+ \fancyfoot{}
+
+ \lhead{ 2024/2025 \\  L3 Mathématiques
+}
+\chead{\textbf{ Algorithmes pour l'enseignement}\\} 
+ \rhead{ Université de Lorraine \\  }
+
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+
+
+
+\newcommand{\md}[3]{#1\ \equiv \ #2 \! \! \! \! \! \pmod {#3} }
+\newcommand{\nmd}[3]{#1 \not \equiv #2 \! \! \! \! \!  \pmod {#3} }
+\newcommand{\mda}[3]{#1 \equiv #2 \! \!  \pmod {#3} }
+\newcommand{\nmda}[3]{#1 \not \equiv #2 \! \! \pmod {#3} }
+\newcommand{\mo}[2]{#1 \! \! \! \! \! \pmod #2 }
+\newcommand{\moa}[2]{#1 \! \!  \pmod {#2} }
+
+\thispagestyle{fancy}
+
+\begin{center}
+%    \HRule \\[0.6cm]
+    { \huge \bfseries
+Interrogation 3 (5 novembre)
+     \\ [0cm] }
+    \HRule \\[0.5cm]
+\end{center}
+
+\begin{center}
+\textbf{durée : 1 heure}
+\end{center}
+
+
+
+Pour chacun des algorithmes, on justifiera avec soin : \begin{itemize}
+\item[•] que l'algorithme termine (si une boucle «~tant que~» est utilisée).
+
+\item[•] que l'algorithme renvoie bien le résultat demandé.
+\end{itemize}
+
+Une réponse non justifiée sera notée sur les trois quarts des points.
+
+On peut utiliser les opérateurs \verb+//+ et \verb+%+ sur les entiers. On évitera d'utiliser des fonctionnalités trop avancées de python, surtout celles non vues en TD : on rédigera en pseudo-code avec des techniques élémentaires. En cas de doute, poser simplement la question.
+
+
+
+
+\bigskip
+
+%Pour les boucles «~pour~», on adoptera les conventions suivantes. Si $a,b\in \Z$, «~pour $i$ allant de $a$ à $b$~» signifie «~pour $i$ parcourant en croissant l'intervalle $\llbracket a,b\rrbracket$~». Lorsque $b<a$, cet intervalle est vide, donc aucune des instructions dans la boucle «~pour~» n'est effectuée (ce sera par exemple le cas si on écrit «~pour $i$ allant de $1$ à $n$~», avec $n=0$). On n'utilisera pas d'autre type de boucles «~pour~» (décroissantes, saut d'indice etc) : dans ces situations, on utilisera l'instruction «~tant que~».
+
+%On pourra utiliser l'instruction «~pour $i$ allant en décroissant de $b$ à $a$~», qui signifie (si $b\geq a$) «~pour $i$ prenant successivement les valeurs $b$, $b-1$,$\ldots$, $a$~». Lorsque $a>b$, aucune instruction dans la boucle «~pour~» n'est alors effectuée.
+
+Dans cette interrogation, \og complexité\fg{} signifie \og complexité en temps\fg, on ne demandera pas de complexité en espace. Les complexités sont entendues dans le pire des cas.
+
+
+\begin{ex}(Limites, équivalents)\label{limites}
+\begin{enumerate}
+\item Déterminer la limite de $(3\sqrt[n]{2} - 2\sqrt[n]{3})^n$.
+\item Déterminer un équivalent de $\left(1+\frac{\ln n}{n}\right)^n$.
+\item Montrer que $\sum_{k=0}^n k! \sim n!$.
+\end{enumerate}
+\end{ex}
+
+\begin{ex}\label{equiv_suite}
+\begin{enumerate}
+\item Montrer qu'une suite équivalente à $2^n$ est croissante à partir d'un certain rang.
+\item Une suite équivalente à $n^2$ est-elle croissante à partir d'un certain rang ?
+\end{enumerate}
+\end{ex}
+
+\begin{ex}\label{tribonacci}
+La suite dite de \og Tribonacci\fg{} est la suite $(u_n)$ définie par $u_0=0$, $u_1 = 0$, $u_2 = 1$ et pour tout $n\geq 0$, $u_{n+3} = u_{n+2}+u_{n+1}+u_n$.
+Dans cet exercice, on demande plusieurs implémentations d'une fonction recevant en entrée un entier naturel $n$ et retournant la valeur de $u_n$.
+\begin{enumerate}
+\item Écrire une implémentation récursive simple. (Sans boucle.)
+\item Écrire une implémentation itérative, sans récursivité, de complexité linéaire en $n$.
+\item Bonus : écrire une implémentation récursive, sans boucle, de complexité linéaire en $n$. L'idée est la même qu'à la question précédente, on pourra utiliser une deuxième fonction intermédiaire pour la récursivité à l'intérieur de la fonction principale.
+\end{enumerate}
+À chaque fois, on prouvera la terminaison, la correction et dans les deux derniers cas, la complexité.
+Plus d'informations sur cette suite sur \url{https://oeis.org/A000073} ou Wikipédia.
+\end{ex}
+
+\newpage
+
+\section*{Correction}
+
+\subsection*{Correction de l'exercice \ref{limites}}
+
+\begin{enumerate}
+\item On a $\sqrt[n]{2} = e^{\frac{\ln 2}{n}} = 1+\frac{\ln 2}{n} + o\left(\frac{1}{n}\right)$. De même, $\sqrt[n]{3} =1+\frac{\ln 3}{n}  +  o\left(\frac{1}{n}\right)$. Donc : 
+\[ 3\sqrt[n]{2}  - 2\sqrt[n]{3}  
+= (3-2) + \frac{3\ln 2 - 2\ln 3}{n} +o\left(\frac{1}{n}\right)
+= 1+ \frac{\ln(8/9)}{n} + o\left(\frac{1}{n}\right)
+\]
+On calcule la puissance $n$-ème avec l'exponentielle et le log de la même manière : 
+\[
+(3\sqrt[n]{2} - 2\sqrt[n]{3})^n
+= \exp\left( n \ln \left( 1+ \frac{\ln(8/9)}{n} + o\left(\frac{1}{n}\right) \right) \right)
+= \exp(\ln(8/9)+o(1) ) \to 8/9
+\]
+\item On a $u_n = exp\left(n\ln\left(1+\frac{\ln n}{n}\right)\right)$. Comme $\frac{\ln n}{n} \to 0$, on a $\ln\left(1+\frac{\ln n}{n}\right) = \frac{\ln n}{n} + O\left(\frac{\ln^2 n}{n^2}\right)$, donc $n\ln\left(1+\frac{\ln n}{n}\right) = \ln n + O\left(\frac{\ln^2 n}{n}\right)$. 
+Finalement, $u_n = exp\left( \ln n + O\left(\frac{\ln^2 n}{n}\right) \right) \sim n$.\\
+Remarque : on n'était pas loin d'avoir de façon précise le terme d'après, mais ce n'était pas demandé  : $u_n = n- \frac{\ln^2(n)}{2} + o(\cdots)$. 
+Pour vous entraîner, vous pouvez calculer le troisième terme, qui devrait être $\frac{\ln^3(n)(3\ln n + 8)}{24n}$.
+\item Posons $u_n = \sum_{k=0}^n k!$.
+En majorant brutalement les $n-1$ premiers termes, on obtient :
+\[ 
+1 \leq \frac{u_n}{n!} = \sum_{k=0}^n\frac{k!}{n!} 
+= \frac{0!}{n!} 
++ \frac{1!}{n!}
++ \cdots
++ \frac{1}{n(n-1)}
++ \frac{1}{n}
++ 1
+\leq 
+(n-1)\times \frac{1}{n(n-1)} + \frac{1}{n} + 1 \to 1\] 
+\end{enumerate}
+
+\subsection*{Correction de l'exercice \ref{equiv_suite}}
+
+\begin{enumerate}
+\item Comme $2^n$ n'est jamais nul, l'hypothèse équivaut à $u_n/2^n \to 1$. Voici deux rédactions.
+%\emph{ Montrons que si $(u_n)$ n'est pas croissante à partir d'un certain rang, alors ceci contredit la convergence de $u_n/2^n$ vers $1$. L'idée est que si à un certain indice $u_n$ décroît, alors $u_n/2^n$ va diminuer trop fortement et donc s'éloigner trop fortement de $1$, qui devrait être sa limite.}
+
+\textbf{Rédaction 1.} La suite $u_n$ est strictement positive  partir d'un certain rang, et à partir de ce rang-là,  on peut écrire $\frac{u_{n+1}}{u_n} = \frac{u_{n+1}}{2^{n+1}}\frac{2^{n+1}}{u_n} \to 2$. Ceci implique la croissance.
+
+\textbf{Rédaction 2.} On revient à la définition de convergence. 
+Soit $N\in\N$ tel que pour tout $n\geq N$, $\frac{u_n}{2^n} \in [2/3,4/3]$.
+Supposons par l'absurde qu'il existe $n\geq N$ tel que $u_{n+1}<u_n$.
+Alors, on a $\frac{u_{n+1}}{2^n} < \frac{u_n}{2^n} \leq \frac43$ et donc $\frac{u_{n+1}}{2^{n+1}} = \frac12\frac{u_{n+1}}{2^n}   < \frac46 = \frac23$.
+C'est absurde car on doit avoir $\frac{u_{n+1}}{2^{n+1}} \in [2/3, 4/3]$.
+\item Non. Considérons la suite $(u_n)$ dont les premières valeurs sont : 
+$0,-1,4,4-1,16,16-1,36,36-1,64,64-1$ etc.
+
+Elle est définie par :
+\[ 
+u_n = \begin{cases}
+n^2 & \text{si $n$ est pair,}\\
+(n-1)^2-1 & \text{sinon}
+\end{cases}
+\]
+Pour $n>0$, notons $v_n := u_n/n^2$. Alors $v_n = 1$ si $n$ est pair, et si $n$ est impair, alors $v_n = \frac{(n-1)^2-1}{n^2} = 1-\frac{1}{n}$. Ceci montre que $v_n$ tend vers $1$ et donc que $u_n \sim n^2$.
+
+%\emph{Question annexe à méditer : si $u_n$ est une suite qui tend vers $+\infty$, dans quels cas a-t-on $u_n \sim u_{n+1}$ ? Ce n'est pas le cas pour la suite $2^n$, mais c'est le cas pour $n^2$.}
+\end{enumerate}
+
+\subsection*{Correction de l'exercice \ref{tribonacci}}
+\begin{enumerate}
+Remarque : en conditions de TP, les fonctions pourraient être testée et chronométrées avec :
+\begin{lstlisting}[language=Python]
+def test_tribo():
+	assert tribo(3) == 1
+	assert tribo(4) == 2
+	assert tribo(5) == 4
+	assert tribo(9) == 44
+	print("Test : tout semble ok")
+	
+import time
+def perf_tribo(n):
+	start = time.perf_counter()
+	t = tribo(n)
+	end = time.perf_counter()
+	delta = end - start
+	return delta
+\end{lstlisting}
+
+\item Implémentation récursive naïve : 
+\begin{lstlisting}[language=Python]
+def tribo(n):
+	if n <= 1:
+		return 0
+	if n == 2:
+		return 1
+	return tribo(n-1)+tribo(n-2)+tribo(n-3)
+\end{lstlisting}
+Remarque : avec cette implémentation, tribo(30) met quelques seconde à s'exécuter sur ma machine (récente, 2020) et tribo(33) met presque seize secondes.\\
+Questions à creuser pour s'entraîner aux TP : estimer la complexité de cette implémentation. Mesurer le temps d'execution de tribo(15), tribo(20), tribo(25), essayer d'estimer le temps d'execution de tribo(n) avec $n$ entre $30$ et $35$, si si le temps estimé semble raisonnable, vérifier. Essayer de déterminer expérimentalement la complexité, en supposant que c'est une suite géométrique en $n$.
+% on pourrait grapher les temps, puis chercher l'exposant
+% en théorie la complexité est en \tau^n, avec \tau\sim 1,84
+% https://fr.wikipedia.org/wiki/Suite_de_Tribonacci
+\item Implémentation itérative qui s'exécute en $O(n)$ :\\
+Premier essai : on calcule la liste de toutes les valeurs jusqu'à $n$, que l'on stocke dans une liste et on retourne la dernière valeur de cette liste :
+\begin{lstlisting}[language=Python]
+def tribo(n):
+	t =  [0,0,1]
+	if n <= 2:
+		return t[n]
+		
+	for i in range(n-2):
+		t.append(t[i]+t[i+1]+t[i+2]) # plus clair (?) : t[-3]+t[-2]+t[-1]
+	return t[-1] # ou t.pop(), ou t[len(t)-1]
+\end{lstlisting}
+On peut comparer la vitesse d'exécution avec la version précédente : le calcul de tribo(1000), et même de tribo(10000), est quasiment instantané. Celui de tribo(100000) prend trois secondes. Enfin, le calcul de tribo(1000000) a semblé prendre bien plus de 30 secondes et a été abandonné. 
+À noter que le stockage de toutes les valeurs de la suite est évidemment susceptible de ralentir l'exécution, ce qui motive une modification.
+
+Amélioration : on ne garde en mémoire que les trois dernières valeurs à chaque fois. Ceci utilise beaucoup moins de mémoire. (Complexité spatiale en $O(1)$ au lieu de $O(n)$.)
+\begin{lstlisting}[language=Python]
+def tribo(n):
+	t =  [0,0,1]
+	if n <= 2:
+		return t[n]
+		
+	for i in range(n-2):
+		somme  = t[0]+t[1]+t[2]
+		t[0] = t[1]
+		t[1] = t[2]
+		t[2] = somme
+	return t[2]
+\end{lstlisting}
+
+Ou, plus court en utilisant les possibilités d'affectations multiples de Python:
+\begin{lstlisting}[language=Python]
+def tribo(n):
+	t =  [0,0,1]
+	if n <= 2:
+		return t[n]
+		
+	for i in range(n-2):
+		t[0], t[1], t[2] = t[1], t[2], t[0]+t[1]+t[2]
+		
+	return t[2]
+\end{lstlisting}
+
+Remarque : toujours sur la même machine,  le calcul de tribo(1000000) s'est exécuté en moins d'une minute. Le processus a utilisé 20 Go de mémoire, suite à quoi sortir de Python a pris quasiment une minute...
+
+
+\item Implémentation récursive de complexité linéaire: on va  utiliser une fonction récursive auxiliaire qui prend en entrée un tableau contenant les trois dernières valeurs calculées.
+\begin{lstlisting}[language=Python]
+def tribo_aux(t,n):
+	if n == 2:
+		return t[2]
+	t[0], t[1], t[2] = t[1], t[2], t[0]+t[1]+t[2]
+	return tribo_aux(t,n-1)
+	
+def tribo(n):
+	if n <= 1:
+		return 0
+	return tribo_aux([0,0,1],n)
+	
+\end{lstlisting}
+Noter que par défaut, Python limite de toute façon le nombre d'appels récursifs.
+\end{enumerate}
+
+
+\end{document}
