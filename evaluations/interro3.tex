@@ -222,6 +222,9 @@ def tribo(n):
 		return 1
 	return tribo(n-1)+tribo(n-2)+tribo(n-3)
 \end{lstlisting}
+Terminaison : si $n\leq 2$ il n'y a pas de nouvel appel. Sinon, il y a des appels récursifs sur des entiers strictement inférieurs à l'entier en entrée.\\
+Correction : attention à ne pas faire une récurrence simple sur l'entier $n$. On peut faire une récurrence \og d'ordre trois\fg{} (sur trois rangs), ou alors, il est conseillé de simplement faire une récurrence forte sur $n$.
+
 Remarque : avec cette implémentation, tribo(30) met quelques seconde à s'exécuter sur ma machine (récente, 2020) et tribo(33) met presque seize secondes.\\
 Questions à creuser pour s'entraîner aux TP : estimer la complexité de cette implémentation. Mesurer le temps d'execution de tribo(15), tribo(20), tribo(25), essayer d'estimer le temps d'execution de tribo(n) avec $n$ entre $30$ et $35$, si si le temps estimé semble raisonnable, vérifier. Essayer de déterminer expérimentalement la complexité, en supposant que c'est une suite géométrique en $n$.
 % on pourrait grapher les temps, puis chercher l'exposant
@@ -239,6 +242,9 @@ def tribo(n):
 		t.append(t[i]+t[i+1]+t[i+2]) # plus clair (?) : t[-3]+t[-2]+t[-1]
 	return t[-1] # ou t.pop(), ou t[len(t)-1]
 \end{lstlisting}
+Terminaison : boucle for.\\
+Correction : on montre par récurrence sur $i$ qu'à la fin de la boucle d'indice $i$, la liste $t$ est de longueur $i+4$ et qu'elle contient les $i+4$ premiers termes de la suite de tribonacci. Après le dernier passage, d'indice $n-3$, la liste est donc de longueur $n+1$, son dernier terme est donc \verb+t[n]+, donc le $n$-ème terme de la suite de tribonacci.\\
+
 On peut comparer la vitesse d'exécution avec la version précédente : le calcul de tribo(1000), et même de tribo(10000), est quasiment instantané. Celui de tribo(100000) prend trois secondes. Enfin, le calcul de tribo(1000000) a semblé prendre bien plus de 30 secondes et a été abandonné. 
 À noter que le stockage de toutes les valeurs de la suite est évidemment susceptible de ralentir l'exécution, ce qui motive une modification.
 
@@ -269,6 +275,10 @@ def tribo(n):
 		
 	return t[2]
 \end{lstlisting}
+
+Terminaison : boucle for.\\
+Correction : cette fois c'est un peu différent car on ne remplit pas une liste, les variables sont mises à jour à chaque tour de boucle.
+Pour $0\leq i\leq n-2$, appelons $t_i$ la valeur du tableau $t$ à la fin du tour de boucle d'indice $i$. On a $t_0[2] = u_{3}$, $t_1[2] = u_{4}$ et on montre par récurrence que $t_i[2]$ est $u_{i+3}$. Après quoi, à la fin du dernier tour de boucle, donc lorsque $i=n-3$, on a donc $t_{n-3}[2] = u_{n}$ et c'est cette valeur qui est retournée.\\
 
 Remarque : toujours sur la même machine,  le calcul de tribo(1000000) s'est exécuté en moins d'une minute. Le processus a utilisé 20 Go de mémoire, suite à quoi sortir de Python a pris quasiment une minute...
 
