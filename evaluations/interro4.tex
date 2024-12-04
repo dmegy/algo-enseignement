@@ -1,0 +1,284 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=3cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{layout}
+\usepackage{fancyhdr}
+\usepackage{url}
+
+\newtheorem*{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem*{nota}{Notation}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rem2}{Remarques}
+\newtheorem{de2}{Définition}
+\newtheorem{pro2}[de2]{Propriété}
+\newtheorem{thm2}[de2]{Théorème}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage{comment}
+
+\input{macros_listings}
+
+\title{}
+
+\date{}
+\begin{document}
+
+
+\pagestyle{fancy}
+
+\fancyhead{}
+ \fancyfoot{}
+
+ \lhead{ 2024/2025}
+\chead{\textbf{Algorithmes pour l'enseignement}} 
+ \rhead{ Université de Lorraine }
+
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+
+
+
+\newcommand{\md}[3]{#1\ \equiv \ #2 \! \! \! \! \! \pmod {#3} }
+\newcommand{\nmd}[3]{#1 \not \equiv #2 \! \! \! \! \!  \pmod {#3} }
+\newcommand{\mda}[3]{#1 \equiv #2 \! \!  \pmod {#3} }
+\newcommand{\nmda}[3]{#1 \not \equiv #2 \! \! \pmod {#3} }
+\newcommand{\mo}[2]{#1 \! \! \! \! \! \pmod #2 }
+\newcommand{\moa}[2]{#1 \! \!  \pmod {#2} }
+
+\thispagestyle{fancy}
+
+\begin{center}
+%    \HRule \\[0.6cm]
+    { \huge \bfseries
+Interrogation 4 (2 décembre 2024)
+     \\ [0cm] }
+    \HRule \\[0.5cm]
+\end{center}
+
+\begin{center}
+\textbf{durée : 2 heures}
+\end{center}
+
+
+
+Pour chacun des algorithmes, on justifiera avec soin : \begin{itemize}
+\item[•] que l'algorithme termine.
+
+\item[•] que l'algorithme renvoie bien le résultat demandé.
+\end{itemize}
+
+On demande des algorithmes en pseudo-code, mais pour simplifier la rédaction, on peut utiliser certaines syntaxes du langage Python comme les opérateurs \verb+//+ et \verb+%+ sur les entiers, les opérateurs + (concaténation) et \verb+len(L)+ sur les listes ou la sélection de sous-listes comme $L[2:5]$.
+On évitera d'utiliser des fonctionnalités trop avancées de python, surtout celles non vues en TD/TP : on rédigera en pseudo-code avec des techniques élémentaires. En cas de doute, poser simplement la question ou rédiger de façon détaillée.
+
+%Attention : en pseudo-code, une boucle \og pour $i$ allant de $p$ à $q$\fg{} comprend les termes d'indice $p$ et $q$. On demande de rédiger en pseudo-code.
+Pour les boucles «~pour~», on adoptera les conventions suivantes. Si $a,b\in \Z$, «~pour $i$ allant de $a$ à $b$~» signifie «~pour $i$ parcourant en croissant l'intervalle $\llbracket a,b\rrbracket$~». Lorsque $b<a$, cet intervalle est vide, donc aucune des instructions dans la boucle «~pour~» n'est effectuée (ce sera par exemple le cas si on écrit «~pour $i$ allant de $1$ à $n$~», avec $n=0$). On n'utilisera pas d'autre type de boucles «~pour~» (décroissantes, saut d'indice etc) : dans ces situations, on utilisera l'instruction «~tant que~».
+
+
+
+\bigskip
+
+
+
+%On pourra utiliser l'instruction «~pour $i$ allant en décroissant de $b$ à $a$~», qui signifie (si $b\geq a$) «~pour $i$ prenant successivement les valeurs $b$, $b-1$,$\ldots$, $a$~». Lorsque $a>b$, aucune instruction dans la boucle «~pour~» n'est alors effectuée.
+
+Dans cette interrogation, \og complexité\fg{} signifie \og complexité en temps\fg, on ne demandera pas de complexité en espace. Les complexités sont entendues dans le pire des cas.
+
+
+
+\begin{ex}\label{equivalents}
+\begin{enumerate}
+\item Déterminer un équivalent  en $+\infty$ de $\ln(n^2+n+1)-\ln(n^2+n-1)$.
+\item Déterminer un équivalent en $+\infty$ de $\left(\frac{n}{n+1}\right)^{n^2}$.
+\end{enumerate}
+\end{ex}
+
+%algos récursifs
+
+
+
+\begin{ex}\label{est_dans}
+% vu dans https://www.youtube.com/watch?v=2XxGplWqXVQ&list=PLUl4u3cNGP62A-ynp6v6-LGBCzeH3VAQB&index=17 mais elle initialise à un element, au lieu de liste vide.
+\begin{enumerate}
+\item Écrire une fonction récursive (sans boucle) \verb+est_dans_liste(L,e)+ qui prend en entrée une liste $L$ et un élément $e$ et qui retourne le booléen Vrai si $e$ est un des éléments de la liste $L$ et Faux sinon.
+(Remarque : en Python, on utiliserait l'opérateur \og \verb+in+\fg{}, en écrivant par exemple \verb+monBooleen = e in L+. On demande de réimplémenter cette fonctionnalité à la main.)
+\item Écrire une fonction récursive (sans boucle) \verb+est_dans_sous_liste(L,e)+ prenant en entrée une liste $L$ de listes d'entiers ainsi qu'un entier $e$ et retournant le booléen Vrai si $e$ appartient à l'une des sous-listes, et Faux sinon. On peut utiliser la première question.
+\end{enumerate}
+Exemples : \verb+est_dans_liste([1,3,2],3)+ renvoie Vrai, \verb+est_dans_liste([[1,3,2],[5,4]],4)+ renvoie Faux, \verb+est_dans_sous_liste([[1,3,2],[5,4]],4)+ renvoie Vrai.
+\end{ex}
+
+\begin{ex}(Aplatissement)\label{flatten}
+Écrire une fonction récursive \verb+aplatir(L)+ prenant en entrée une liste $L$ contenant des listes d'entiers, et retournant la concaténation de toutes ces listes d'entiers. Par exemple \verb+aplatir([[1,2],[7],[3,5]])+ retourne la liste \verb+[1,2,7,3,5]+.
+La fonction ne doit pas utiliser de boucle, uniquement de la récursivité.
+\end{ex}
+
+%Pour l'examen de TP : fonction qui inverse une liste, et toutes les sous-listes récursivement.
+
+%implémenter algorithme dichotomie, précision etc.
+
+%récurrences et justifications.
+
+\begin{ex}\label{fusion}
+On se donne une fonction \verb+fusion(L1,L2,L3)+ qui prend en entrée trois listes de nombres triés par ordre croissant, et qui retourne une unique liste de nombres triés par ordre croissant, résultant de la fusion des trois listes. On suppose que cette fonction fusionne les listes avec une complexité (temporelle) de $O(p+q+r)$ avec $p$, $q$ et $r$ les longueurs des trois listes. Si les trois listes ont la même longueur $n$, la complexité est donc en $O(n)$.
+
+On considère la variation suivante du tri fusion : on reçoit en entrée une liste non triée, on la coupe en trois (au lieu de deux), on trie récursivement les trois listes puis on les refusionne et on retourne la liste triée obtenue.
+%\begin{lstlisting}[language=Python]
+%def tri(L):
+%	n = len(L)
+%	if n <= 1:
+%		return L
+%	return fusion(L[:n//3],L[n//3:2*(n//3)],L[2*(n//3):])
+%\end{lstlisting}
+
+Comparer la complexité de cet algorithme de tri avec le tri fusion classique.
+
+\end{ex}
+
+\begin{ex}\label{Karatsuba}
+Dans cet exercice, on considère des nombres entiers de grande taille, où la taille d'un nombre désignera ici son nombre de chiffres en base $10$. (On rédigera tout en base $10$.)
+
+Présenter l'algorithme de multiplication rapide de Karatsuba et calculer sa complexité, en fonction de la taille des nombres donnés en entrée. 
+
+
+(Rappel : il s'agit de l'algorithme vu en cours qui multiplie deux nombres de longueur $n$ en complexité strictement meilleure que $n^2$. Pour calculer la complexité, on supposera que l'on peut additionner des nombres de taille $n$ en temps $O(n)$. La multiplication par une puissance de $10$ correspond à un décalage des chiffres et on suppose ici quelle s'effectue en $O(n)$.)
+% Certains processeurs ont des instruction particulières permettant de décaler en temps constant : https://stackoverflow.com/questions/9083743/is-bit-shifting-o1-or-on
+\end{ex}
+
+\begin{ex}[Bonus]\label{bonus}
+Implémenter la variation du tri fusion introduite dans l'exercice \ref{fusion}. (La fusion de trois listes triées, et l'algorithme global.)
+\end{ex}
+
+\newpage
+
+\section*{Correction succincte}
+
+\subsection*{Correction de l'exercice \ref{equivalents}}
+\begin{enumerate}
+\item On a
+\begin{align*}
+\ln(n^2+n+1)-\ln(n^2+n-1)
+&= \ln\left(\frac{n^2+n+1}{n^2+n-1}\right)\\
+&= \ln\left(1+\frac{2}{n^2+n-1}\right)\\
+&\sim \frac{2}{n^2+n-1}\\
+&\sim \frac{2}{n^2}
+\end{align*}
+On peut aussi faire un DL de chacun des deux termes $\ln\left(1+\frac1n\pm\frac{1}{n^2}\right)$ à la précision $o(1/n^2)$.
+\item On écrit 
+\[ \left(\frac{n}{n+1}\right)^{n^2}
+= \exp \left(n^2 \ln \frac{n}{n+1}\right).
+\]
+On effectue donc un DL de $\ln \frac{n}{n+1}$ :
+\begin{align*}
+\ln \frac{n}{n+1}
+= \ln\left(1-\frac{1}{n+1}\right) 
+&= -\frac{1}{n+1} - \frac12\left(\frac{1}{n+1}\right)^2+o\left(\frac{1}{n^2}\right)\\
+&= -\frac{1}{n} +\frac{1}{n(n+1)}- \frac12\left(\frac{1}{n+1}\right)^2+o\left(\frac{1}{n^2}\right)\\
+&= -\frac{1}{n} + \frac{1}{2n^2}+o\left(\frac{1}{n^2}\right)
+\end{align*}
+
+On en déduit que $n^2 \ln \frac{n}{n+1} = -n+\frac12 + o(1)$ et donc que 
+\[ u_n =\exp \left( -n+\frac12 + o(1)\right) 
+= e^{-n}e^{1/2}e^{o(1)} 
+\sim e^{-n}e^{1/2}
+ \]
+\end{enumerate}
+
+
+
+\subsection*{Correction de l'exercice \ref{est_dans}}
+\begin{enumerate}
+\item 
+\begin{lstlisting}[language=Python]
+def est_dans_liste(L,e):
+	if L == []:
+		return False
+	return L[0]==e or est_dans_liste(L[1:],e)
+\end{lstlisting}
+Preuve de terminaison : les appels récursifs se font sur des listes ayant à chaque fois un élément de moins et la récursion s'arrête pour une liste vide.\\
+Autre rédaction : on montre par récurrence sur $n\in\N$ que pour toute liste $L$ de longueur $n$, \verb+est_dans_liste(L,e):+ produit $n$ autres appels récursifs exactement.\\
+Preuve de correction : on montre par récurrence que pour tout entier $n$, pour toute liste $L$ de longueur $n$, pour tout objet $e$, \verb+est_dans_liste(L,e):+ renvoie le résultat voulu : Vrai si $e$ est un élément de $L$ et Faux sinon.
+\item 
+\begin{lstlisting}[language=Python]
+def est_dans_sous_liste(L,e):
+	if L == []:
+		return False
+	return est_dans_liste(L[0],e) or est_dans_sous_liste(L[1:],e)
+\end{lstlisting}
+\end{enumerate}
+\begin{lstlisting}[language=Python]
+\end{lstlisting}
+
+\subsection*{Correction de l'exercice \ref{flatten}}
+
+\begin{lstlisting}[language=Python]
+def aplatir(L:list[list[int]]) -> list[int] :
+	if L == []:
+		return []
+	return L[0] + aplatir(L[1:])
+\end{lstlisting}
+
+\subsection*{Correction de l'exercice \ref{fusion}}
+
+Si $n$ est multiple de trois, la complexité $T(n)$ de cet algorithme de tri va vérifier
+\[ T(n) = 3T(n/3)+O(n)\]
+En appliquant le \og master theorem\fg, on voit que la complexité obtenu est  en $O(n\log n)$, donc du même ordre de grandeur que le tri fusion classique.
+On ne gagne donc pas d'ordre de grandeur de complexité en divisant en trois plutôt qu'en deux, dans ce cas-là.
+
+\subsection*{Correction de l'exercice \ref{Karatsuba}}
+
+Définition de l'algo : cours. On coupe en deux et on effectue trois multiplications (au lieu de quatre), sur des nombres deux fois plus petits. (Le nombre d'additions et de décalages, lui, augmente, mais il est asymptotiquement négligeable par rapport au temps d'exécution des multiplications.)
+
+Si $n$ est pair, la complexité $T$ va vérifier une relation de la forme
+\[ T(n) = 3T(n/2)+O(n)\]
+D'après le \og master theorem\fg, comme $\log_2(3)>1$, on a alors $T(n) = O\left(n^{\log_2(3)}\right)$.
+
+\subsection*{Correction de l'exercice \ref{bonus}}
+
+On peut utiliser l'algorithme de fusion de deux listes et l'appliquer deux fois :
+
+\begin{lstlisting}[language=Python]
+def fusion2(L1,L2):
+	if L1 == []:
+		return L2
+	if L2 == []:
+		return L1
+	if L1[0] <= L2[0]:
+		return [L1[0]] + fusion2(L1[1:],L2)
+	return [L2[0]] + fusion2(L1,L2[1:])
+
+def fusion3(L1,L2,L3):
+	return fusion2(fusion2(L1,L2),L3)
+\end{lstlisting}
+
+Ensuite, l'algorithme de tri :
+\begin{lstlisting}[language=Python]
+def tri(L):
+	n = len(L)
+	if n <= 1:
+		return L
+	if n == 2 and L[0]<= L[1]:
+		return L
+	if n == 2 and L[0]> L[1]:
+		return [L[1],L[0]]
+	return fusion3(tri(L[:n//3]),tri(L[n//3:2*(n//3)]),tri(L[2*(n//3):]))
+\end{lstlisting}
+On a rajouté le cas de longueur deux car sinon, lors de la découpe en trois parties, une liste de longueur deux serait coupée en deux listes vides et une liste de longueur deux, provoquant une récursivité infinie.
+
+\end{document}
