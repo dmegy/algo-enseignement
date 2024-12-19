@@ -171,7 +171,10 @@ Implémenter la variation du tri fusion introduite dans l'exercice \ref{fusion}.
 
 \subsection*{Correction de l'exercice \ref{equivalents}}
 \begin{enumerate}
-\item On a
+\item Il y a plusieurs façons de faire:
+\begin{enumerate}
+\item Méthode systématique : faire DL de chacun des deux termes $\ln\left(1+\frac1n\pm\frac{1}{n^2}\right)$ à la précision $o(1/n^2)$, puis sommer les deux DL. Rappel : on ne peut pas sommer des équivalents, mais des DL oui. Erreurs vues : mauvaise gestion de la précision du DL.\footnote{Entraînement recommandé : développer $\ln\left(1+\frac1n+\frac{1}{n^2}\right)$ à la précision $o(1/n^3)$}
+\item Autre méthode: on peut remarquer que
 \begin{align*}
 \ln(n^2+n+1)-\ln(n^2+n-1)
 &= \ln\left(\frac{n^2+n+1}{n^2+n-1}\right)\\
@@ -179,12 +182,15 @@ Implémenter la variation du tri fusion introduite dans l'exercice \ref{fusion}.
 &\sim \frac{2}{n^2+n-1}\\
 &\sim \frac{2}{n^2}
 \end{align*}
-On peut aussi faire un DL de chacun des deux termes $\ln\left(1+\frac1n\pm\frac{1}{n^2}\right)$ à la précision $o(1/n^2)$.
+\end{enumerate}
+
+
+
 \item On écrit 
 \[ \left(\frac{n}{n+1}\right)^{n^2}
 = \exp \left(n^2 \ln \frac{n}{n+1}\right).
 \]
-On effectue donc un DL de $\ln \frac{n}{n+1}$ :
+On effectue donc un DL de $\ln \frac{n}{n+1}$. Pour cela, on peut écrire :
 \begin{align*}
 \ln \frac{n}{n+1}
 = \ln\left(1-\frac{1}{n+1}\right) 
@@ -192,12 +198,21 @@ On effectue donc un DL de $\ln \frac{n}{n+1}$ :
 &= -\frac{1}{n} +\frac{1}{n(n+1)}- \frac12\left(\frac{1}{n+1}\right)^2+o\left(\frac{1}{n^2}\right)\\
 &= -\frac{1}{n} + \frac{1}{2n^2}+o\left(\frac{1}{n^2}\right)
 \end{align*}
+(Il y a une méthode plus rapide exposée plus bas mais le calcul ci-dessus sert également à illustrer comment passer de puissances de $\frac{1}{n+1}$ à des puissances de $\frac{1}{n}$, ce qui n'est pas immédiat après le premier terme.)
 
 On en déduit que $n^2 \ln \frac{n}{n+1} = -n+\frac12 + o(1)$ et donc que 
 \[ u_n =\exp \left( -n+\frac12 + o(1)\right) 
 = e^{-n}e^{1/2}e^{o(1)} 
-\sim e^{-n}e^{1/2}
+\boxed{\sim e^{-n}e^{1/2}}
  \]
+Erreurs vues : oubli de la constante $e^{1/2}$ en général à cause d'un passage de l'équivalent dans l'exponentielle.\\
+Remarque qui simplifie beaucoup le calcul : pour le DL de $\ln \frac{n}{n+1}$, on peut aussi remarquer que 
+\[ \ln \frac{n}{n+1} 
+= \ln \frac{1}{1+\frac1n} 
+= -\ln\left(1+\frac1n\right)
+= -\frac1n + \frac{1}{2n^2}+ o\left(\frac{1}{n^2}\right).
+\]
+
 \end{enumerate}
 
 
@@ -211,9 +226,16 @@ def est_dans_liste(L,e):
 		return False
 	return L[0]==e or est_dans_liste(L[1:],e)
 \end{lstlisting}
+(Dans ce qui suit on ne détaille pas la rédaction des preuves par récurrence.)\\
+
 Preuve de terminaison : les appels récursifs se font sur des listes ayant à chaque fois un élément de moins et la récursion s'arrête pour une liste vide.\\
 Autre rédaction : on montre par récurrence sur $n\in\N$ que pour toute liste $L$ de longueur $n$, \verb+est_dans_liste(L,e):+ produit $n$ autres appels récursifs exactement.\\
-Preuve de correction : on montre par récurrence que pour tout entier $n$, pour toute liste $L$ de longueur $n$, pour tout objet $e$, \verb+est_dans_liste(L,e):+ renvoie le résultat voulu : Vrai si $e$ est un élément de $L$ et Faux sinon.
+Autre rédaction\footnote{Rédaction la plus simple, conseillée.} : on montre par récurrence sur $n\in\N$ que pour toute liste $L$ de longueur $n$, \verb+est_dans_liste(L,e):+ termine.\\
+Preuve de correction : on montre par récurrence que pour tout entier $n$, pour toute liste $L$ de longueur $n$, pour tout objet $e$, \verb+est_dans_liste(L,e):+ renvoie le résultat voulu : Vrai si $e$ est un élément de $L$ et Faux sinon.\\
+
+Erreurs vues : le \og pour toute liste de longueur $n$\fg{} doit être à l'intérieur de la proposition $\mathcal P(n)$, qui ne dépend \textbf{que} de $n$, pas de la liste.\\
+Dans la preuve de l'hérédité, il doit donc y avoir la déclaration d'une nouvelle liste $L$ de longueur $n+1$ : \og Soit $n\in \N$. Supposons $\mathcal P(n)$. Prouvons $\mathcal P(n+1)$. Soit $L$ une liste de longueur $n+1$...\fg\\
+L'utilisation de l'hypothèse de récurrence n'est souvent pas très bien rédigée. Ici il faut rappeler que $n+1 \geq 1$, on ne rentre pas dans le \og if\fg, et ensuite,  $L[1:]$ est donc une liste de longueur $n$ à laquelle on peut appliquer l'hypothèse de récurrence.
 \item 
 \begin{lstlisting}[language=Python]
 def est_dans_sous_liste(L,e):
@@ -221,9 +243,12 @@ def est_dans_sous_liste(L,e):
 		return False
 	return est_dans_liste(L[0],e) or est_dans_sous_liste(L[1:],e)
 \end{lstlisting}
+Preuve de terminaison : récurrence sur la longueur de la liste en entrée. (On admet que la fonction \verb+est_dans_liste+ termine, c'est la question précédente.)\\
+Preuve d'exactitude : récurrence sur la longueur de la liste, comme plus haut. (Rappel : le \og pour toute liste de longueur $n$\fg{} doit être dans l'assertion $\mathcal P(n)$.)
 \end{enumerate}
-\begin{lstlisting}[language=Python]
-\end{lstlisting}
+
+
+
 
 \subsection*{Correction de l'exercice \ref{flatten}}
 
@@ -234,12 +259,17 @@ def aplatir(L:list[list[int]]) -> list[int] :
 	return L[0] + aplatir(L[1:])
 \end{lstlisting}
 
+Preuves de correction et terminaison par récurrence sur la longueur des listes d'entrée comme plus haut, avec les mêmes remarques.
+
 \subsection*{Correction de l'exercice \ref{fusion}}
 
 Si $n$ est multiple de trois, la complexité $T(n)$ de cet algorithme de tri va vérifier
 \[ T(n) = 3T(n/3)+O(n)\]
-En appliquant le \og master theorem\fg, on voit que la complexité obtenu est  en $O(n\log n)$, donc du même ordre de grandeur que le tri fusion classique.
+En appliquant le théorème maître, on voit que la complexité obtenu est  en $O(n\log_3 n)$, donc du même ordre de grandeur que le tri fusion classique. En effet, on a $\log_3 n = O(\log_2 n)$ et $\log_2 n = O(\log_3 n)$.
 On ne gagne donc pas d'ordre de grandeur de complexité en divisant en trois plutôt qu'en deux, dans ce cas-là.
+
+Erreurs vues : il est bien sûr faux que $\log_3 n = \log_2 n$, il est également faux que $\log_3 n \sim \log_2 n$. On a juste des grand O dans les deux sens. Avec la notation $\Theta$, on peut écrire $\log_3 n = \Theta(\log_2 n)$.\\
+Autres erreurs vues : mauvaise application du théorème maître, ou alors  mauvaise mise en équation qui aboutit à $T(n) = 3T(n/3)+1$ ou $T(n) = 3T(n/3)$
 
 \subsection*{Correction de l'exercice \ref{Karatsuba}}
 
@@ -247,7 +277,11 @@ Définition de l'algo : cours. On coupe en deux et on effectue trois multiplicat
 
 Si $n$ est pair, la complexité $T$ va vérifier une relation de la forme
 \[ T(n) = 3T(n/2)+O(n)\]
-D'après le \og master theorem\fg, comme $\log_2(3)>1$, on a alors $T(n) = O\left(n^{\log_2(3)}\right)$.
+D'après le théorème maître, comme $\log_2(3)>1$, on a alors $T(n) = O\left(n^{\log_2(3)}\right)$.
+
+\begin{center}
+\textbf{Les problèmes de complexité des algorithmes récursifs pouvaient également être traités avec la technique du tableau et de l'arbre de complexité.}
+\end{center}
 
 \subsection*{Correction de l'exercice \ref{bonus}}
 
