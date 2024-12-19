@@ -229,10 +229,11 @@ def est_dans_liste(L,e):
 (Dans ce qui suit on ne détaille pas la rédaction des preuves par récurrence.)\\
 
 Preuve de terminaison : les appels récursifs se font sur des listes ayant à chaque fois un élément de moins et la récursion s'arrête pour une liste vide.\\
-Autre rédaction : on montre par récurrence sur $n\in\N$ que pour toute liste $L$ de longueur $n$, \verb+est_dans_liste(L,e):+ produit $n$ autres appels récursifs exactement.\\
-Autre rédaction\footnote{Rédaction la plus simple, conseillée.} : on montre par récurrence sur $n\in\N$ que pour toute liste $L$ de longueur $n$, \verb+est_dans_liste(L,e):+ termine.\\
+Autre rédaction : on montre par récurrence sur $n\in\N$ que pour toute liste $L$ de longueur $n$, pour tout objet $e$, \verb+est_dans_liste(L,e):+ produit $n$ autres appels récursifs exactement.\\
+Autre rédaction\footnote{Rédaction la plus simple, conseillée.} : on montre par récurrence sur $n\in\N$ que pour toute liste $L$ de longueur $n$, pour tout objet $e$, \verb+est_dans_liste(L,e):+ termine.\\
 Preuve de correction : on montre par récurrence que pour tout entier $n$, pour toute liste $L$ de longueur $n$, pour tout objet $e$, \verb+est_dans_liste(L,e):+ renvoie le résultat voulu : Vrai si $e$ est un élément de $L$ et Faux sinon.\\
 
+Remarque : en fait on pourrait sortir de $\forall e$ de la preuve par récurrence et fixer un élément $e$ arbitraire avant, ça ne change pas grand chose, car l'élément $e$ est toujours le même dans les appels effectués récursivement. Par contre le $\forall L$ doit être à l'intérieur de $\mathcal P(n)$ car la liste n'est plus la même dans l'appel récursif.\\
 Erreurs vues : le \og pour toute liste de longueur $n$\fg{} doit être à l'intérieur de la proposition $\mathcal P(n)$, qui ne dépend \textbf{que} de $n$, pas de la liste.\\
 Dans la preuve de l'hérédité, il doit donc y avoir la déclaration d'une nouvelle liste $L$ de longueur $n+1$ : \og Soit $n\in \N$. Supposons $\mathcal P(n)$. Prouvons $\mathcal P(n+1)$. Soit $L$ une liste de longueur $n+1$...\fg\\
 L'utilisation de l'hypothèse de récurrence n'est souvent pas très bien rédigée. Ici il faut rappeler que $n+1 \geq 1$, on ne rentre pas dans le \og if\fg, et ensuite,  $L[1:]$ est donc une liste de longueur $n$ à laquelle on peut appliquer l'hypothèse de récurrence.

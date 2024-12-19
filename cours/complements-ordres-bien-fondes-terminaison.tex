@@ -1,0 +1,399 @@
+  \documentclass[12pt]{article}
+\usepackage{a4wide}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{ulem}
+\usepackage{listings}
+\input{macros_listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true]{hyperref} %pour faire des liens hypertextes
+
+\bibliographystyle{alpha}%pour que les références soient une partie du nom+l'année
+\long\def\rge#1{{\color{red}#1}}
+\long\def\bl#1{{\color{blue}#1}}
+\long\def\vrt#1{{\color{ForestGreen}#1}}
+
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\usepackage{graphicx}
+
+
+
+
+
+
+
+
+
+
+
+
+\newtheorem*{att}{Attention !!!}
+\newtheorem*{de}{Définition}
+\newtheorem*{qst}{Question}
+\newtheorem*{rep}{Réponse}
+\newtheorem*{reps}{Réponses}
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{theoreme}[thm]{Théorème}
+\newtheorem{algo}{Algorithme}
+\newtheorem*{rap}{Rappels}
+\newtheorem{sch}[thm]{Schéma}
+\newtheorem*{ex}{Exemple}
+\newtheorem*{exo}{Exercice}
+\newtheorem*{exs}{Exemples}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rems}{Remarques}
+\newtheorem{remarque}[thm]{Remarque}
+\newtheorem{remarques}[thm]{Remarques}
+\newtheorem*{but}{But}
+\newtheorem{Def}[thm]{Définition}
+\newtheorem{definition}[thm]{Définition}
+\newtheorem{Def/prop}[thm]{Définition/Proposition}
+\newtheorem{Lem}[thm]{Lemme}
+\newtheorem{lemme}[thm]{Lemme}
+\newtheorem{exemple}[thm]{Exemple}
+\newtheorem{exemples}[thm]{Exemples}
+\newtheorem{Prop}[thm]{Proposition}
+\newtheorem{proposition}[thm]{Proposition}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{prin}{Principe}
+\newtheorem*{nota}{Notation}
+\newtheorem*{notas}{Notations}
+
+\newcommand{\blue}[1]{{\color{blue}#1}}
+\newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\green}[1]{{\color{green}#1}}
+\newcommand{\yellow}[1]{{\color{yellow}#1}}
+\newcommand{\magenta}[1]{{\color{magenta}#1}}
+
+
+\newtheorem{Cor}[thm]{Corollaire}
+\newtheorem{corollaire}[thm]{Corollaire}
+\usepackage{comment}
+
+
+
+\title{Ordres bien fondés et application à la terminaison d'algorithmes}
+\author{Damien Mégy}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\PCC}{\mathscr{P}}
+\newcommand{\cont}{\mathrm{cont}}
+\newcommand{\cd}{\mathrm{cd}}
+
+
+
+\begin{document}
+
+
+\maketitle
+
+\tableofcontents
+
+\section{Motivation}
+
+Dans ce chapitre, on présente une notion théorique, celle d'\emph{ordre bien fondé}, ainsi qu'un principe de récurrence généralisé, valable sur les ensembles bien fondés et non plus seulement $\N$.
+
+Ensuite, on applique ceci à la rédaction de preuves de terminaison de certains algorithmes.
+
+\section{Prérequis}
+
+Chapitre de relations d'ordre de première année. Relations d'ordre, ordre total, plus petit élément, majorants et minorants, applications croissantes.
+
+Sources possibles pour réviser : 
+\begin{enumerate}
+\item Tout-en-un L1 Ramis-Warusfel à la BU.
+\item Chapitre sur les relations d'équivalence et d'ordre sur Bibmath : \url{https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/logique/relations&type=fexo}. Les derniers exercices correspondent au début de ce chapitre de compléments. (Mais les définitions prises ne sont pas forcément les mêmes.)
+\item Mansuy, Tout-en-un MPSI, livre \og anciens programmes\fg{} épuisé et  mis à disposition gratuitement par l'auteur : \url{http://www.rogermansuy.fr/pdf/MPSI2019.pdf}
+\item Document d'accompagnement de l'ancienne UE de L1 couvrant ce thème à Nancy : \url{https://github.com/dmegy/decouverteDesMaths/blob/master/cours.pdf}. Ce poly un peu expérimental est un bon moyen de réviser les fondamentaux de L1 quelques années après. Certains exercices sont assez difficiles. Tous ces exercices ont été ajoutés à la base exo7, qui en contenait déjà beaucoup d'autres plus classiques.
+\item Exo 7 : \url{http://exo7.emath.fr/bin/extract5.php}, catégorie L1 Algèbre /100.05. 
+\end{enumerate}
+
+\section{Introduction et rappels}
+
+\begin{definition}
+Soit $\leq_E$ un ordre sur un ensemble $E$.
+L'\textbf{ordre strict} associé à $\leq$ est la relation binaire $<_E$ sur $E$ définie par 
+\[ x <_E y \iff x\leq_E y \text{ et } x\neq y.\]
+ \end{definition}
+
+\paragraph{Exemples  et contre-exemples fondamentaux de relations d'ordre}
+\begin{enumerate}
+\item L'ensemble $\N$ muni de la relation d'ordre usuelle $\leq$ est un ensemble ordonné. 
+\item L'ensemble $\N$ muni de la relation de divisibilité est un ensemble ordonné.
+\item L'ensemble $\Z$ muni de la relation de divisibilité n'est \textbf{pas} un ensemble ordonné.
+\item Si $E$ est un ensemble, l'ensemble $\mathcal P(E)$ des parties de $E$ est naturellement  ordonné par la relation $\subseteq$.
+\item Si $(E,\leq_E)$ et $(F,\leq_F)$ sont des ensembles ordonnés, l'ensemble produit $E\times F$ peut être muni:
+\begin{enumerate}
+\item de l'\textbf{ordre produit}, définie par :
+\[ (e,f) \leq_{E\times F} (e',f') \iff e\leq_E e' \text{ et }f\leq_F f';\]
+\item de l'\textbf{ordre lexicographique}, défini par 
+\[ (e,f) \leq_{lex} (e',f') \iff (e <_E e' \text{ ou } (e=e' \text{ et }f\leq_F f') ).\]
+\end{enumerate}
+\end{enumerate}
+
+ 
+ 
+ \begin{definition}
+ Un ordre $\leq$ sur $E$ est dit \emph{total} si tous les éléments sont comparables : 
+ \[ \forall (x,y)\in E^2, x\leq y \text{ ou } y\leq x.\]
+ \end{definition}
+ 
+\begin{exo}
+\begin{enumerate}
+\item Montrer que l'ordre produit sur $\N^2$ n'est pas total.
+\item Montrer que la divisibilité sur $\N$ n'est pas un ordre total.
+\item Montrer que l'ordre lexicographique sur $\N^2$ est total.
+\item Montrer que si $E$ et $F$ sont bien ordonnés, l'ordre lexicographique sur le produit $E\times F$ est un ordre total.
+\end{enumerate}
+\end{exo}
+
+Une suite dans un ensemble $E$ est un élément de $E^\N$, c'est-à-dire une application de $\N$ dans $E$.
+On note en général les suites comme des familles indexées par $\N$, par exemple comme ceci :  $u = (u_n)_{n\in\N}$.
+Si l'ensemble $E$ est muni d'une relation d'ordre $\leq_E$, Une suite est (strictement) (dé)croissante si l'application en question est (strictement) (dé)croissante, vue comme application entre les ensembles ordonnés $(\N,\leq)$ (ordre usuel) et $(E,\leq_E)$.
+
+
+
+\section{Ordres bien fondés}
+ 
+\begin{definition}
+Soit $(E,\leq)$ un ensemble ordonné, $X\subseteq E$ une partie de $E$ et $a\in X$.
+On dit que : 
+\begin{enumerate}
+\item $a$ est un plus petit élément de $X$ si $\forall x \in X, a\leq x$.
+\item $a$ est un élément minimal de $X$ s'il n'existe pas de $y\in X$ avec $x < a$.
+\end{enumerate}
+(On définit de même la notion de plus grand élément et d'élément maximal.)
+\end{definition}
+
+\begin{exemples}
+\begin{enumerate}
+\item Dans $\N\setminus\{0,1\}$ muni de la divisibilité, $5$ est minimal mais n'est pas un plus petit élément.
+\item Un plus petit élément est unique, un élément minimal pas forcément.
+\item Dans un ensemble totalement ordonné, un élément minimal est un (le) plus petit élément.
+\end{enumerate}
+\end{exemples}
+  
+\begin{definition}
+Soit $(E,\leq)$ un ensemble ordonné. On dit que : 
+\begin{enumerate}
+\item $(E,\leq)$ est \emph{bien ordonné} si toute partie non vide admet un plus petit élément.
+\item $(E,\leq)$ est \emph{bien fondé} si toute partie non vide admet un élément minimal.
+\end{enumerate}
+\end{definition}
+ 
+\begin{exemples}
+\begin{enumerate}
+\item Un bon ordre est toujours bien fondé.
+\item L'ordre usuel $\leq$ sur $\Z$ n'est pas un bon ordre, ni bien fondé : les parties $\Z$, ou $2\Z$, ou $\Z_-$, n'ont pas de plus petit élément, ni d'élément minimal.
+\item L'ordre usuel sur $\N$ est un bon ordre.
+\item La divisibilité sur $\N$ est bien fondée, mais n'est pas un bon ordre : la partie $\{2,3\}$ n'a pas de plus petit élément pour la divisibilité.
+\item l'ensemble $\mathcal P(\N)$ avec l'ordre usuel induit par l'inclusion de parties n'est pas bien fondé : la partie formée par les parties $[n,\infty[$ n'a pas d'élément minimal.
+\end{enumerate}
+\end{exemples}
+ 
+\begin{exo}
+Montrer qu'un ordre est bon ssi il est bien fondé et total.
+\end{exo}
+
+
+\begin{thm}
+Un ensemble ordonné $E$ est bien fondé si et seulement s'il n'existe pas de suite strictement décroissante dans $E$.
+\end{thm}
+
+
+\begin{proof}
+\begin{enumerate}
+\item Supposons qu'il existe une suite $(u_n)_{n\in\N}$ d'éléments de $E$, strictement décroissante. Alors, l'image de la suite $X = \{u_n, n\in\N\}$ est une partie non vide qui n'a pas d'élément minimal. En effet, si $x\in X$, alors par définition de $X$ il existe $n\in \N$ tel que $x=u_n$. Définissons alors $y=u_{n+1}$. On a $y \in X$ et  $y<x$ car la suite est strictement décroissante.
+\item Réciproquement, s'il existe une partie non vide $X\subseteq E$ sans élément minimal, on peut construire par récurrence une suite $(u_n)_{n\in\N}$ strictement décroissante en prenant $u_0\in X$ puisque $X$ est non vide, puis comme $X$ n'a pas d'élément minimal, $u_0$ n'est pas minimal donc il existe $u_1 \in X$ avec $u_1 < u_0$, mais $u_1$ n'est pas non plus minimal etc.
+\end{enumerate}
+\end{proof}
+
+\begin{exo}
+Un ensemble est bien fondé ssi toute suite décroissante est stationnaire.
+\end{exo}
+
+
+
+\begin{exo} Soient $E$ et $F$ des ensembles ordonnés.
+%le produit d'ordres totaux n'est pas total.
+% le produit de bon ordres n'est pas un bon ordre
+Si $E$ et $F$ sont bien fondés, le produit $E\times F$ muni de l'ordre lexicographique est bien fondé.
+\end{exo}
+
+%Exemple d'ensemble pas bien fondé : mots sur un alphabet, avec l'ordre lexicographique.
+%Même si sur l'alphabet c'est bien fondé, on a 
+% $ab > aab > aaab > \cdots$
+%Par contre l'ordre prefixe est bien fondé.
+
+
+\begin{theoreme}[Principe de récurrence généralisée / récurrence transfinie / récurrence bien fondée]
+Soit $(E,\leq)$ un ensemble bien fondé et soir $<$ l'ordre strict associé.
+Soit $\mathcal P(x)$ un prédicat sur $E$. (Une assertion à paramètre $x\in E$, autrement dit une fonction de $E$ dans les booléens.)
+
+Supposons que : 
+\[ \forall x, (\forall y< x, P(y)) \implies P(x)\]
+Alors, $\forall x\in E, P(x)$.
+\end{theoreme}
+
+
+
+\begin{proof}
+Supposons $\forall x, (\forall y< x, P(y)) \implies P(x)$, assertion que l'on notera $(H)$.
+Montrons $\forall x\in E, P(x)$.
+Supposons par l'absurde que  $\forall x\in E, P(x)$ soit fausse.
+La partie $A := \{x\in E, non(P(x))\}$ est alors non vide.
+Elle possède donc un élément minimal, que l'on note $m$.
+Par définition, $\forall y\in E, y< m \implies y\not\in A$, c'est-à-dire $\forall y\in E, y< m \implies P(m)$.
+D'après $H$, on en déduit $P(m)$, contradiction.
+\end{proof}
+
+\begin{remarque}
+L'hypothèse $\forall x, (\forall y< x, P(y)) \implies P(x)$ ressemble à une hypothèse d'hérédité de type récurrence forte, mais elle contient aussi l'initialisation (ou : les initialisations), car elle implique que pour tout $x$ minimal dans $E$, on a $P(x)$. En effet, il n'y a alors aucun élément $y<x$ donc la prémisse $\forall y< x, P(y)$ est vraie, donc par implication, $P(x)$ est vraie.
+\end{remarque}
+
+
+\section{Application : terminaisons d'algorithmes}
+
+Rappel : la terminaison d'un algorithme n'est pas toujours facile à déterminer.
+L'exemple le plus célèbre est  la conjecture de Syracuse, ou problème de Collatz : il n'est pas connu si la fonction suivante termine pour toute entrée $n\in\N$ :
+
+\begin{lstlisting}[language=Python]
+def Syracuse(n):
+	while n != 1:
+		if n % 2 == 0:
+			n = n / 2
+		else:
+			n = 3*n+1
+	return 0 
+\end{lstlisting}
+
+Même lorsque l'on sait que l'algorithme termine, rédiger une preuve de la terminaison peut être plus ou moins long.
+
+Dans les cas simples, comme le calcul récursif d'une factorielle, l'entrée est un entier positif qui diminue à chaque appel récursif, ce qui implique qu'il n'y a qu'un nombre fini d'appels successifs.
+
+Mais parfois, il n'y a pas de choix clair d'entier positif qui diminue strictement, comme par exemple dans la fonction suivante qui prend en entrée un couple d'entiers strictement positifs : 
+\begin{lstlisting}[language=Python]
+def pgcd(a: int, b: int) -> int:
+	# prend des entiers strictement positifs en entree
+	if a == b:
+		return a
+	if a > b:
+		return pgcd(a-b,b)
+	else:
+		return pgcd(a,b-a)
+\end{lstlisting}
+
+À chaque appel récursif, $a$ ne diminue pas forcément strictement, ni $b$.
+
+Dans ce genre de situation, une technique de rédaction possible consiste à utiliser la notion d'ensemble ordonné bien fondé.
+
+Dans le cas itératif, on va identifier un variant de boucle à valeur dans un ensemble bien fondé, qui décroit strictement à chaque tour de boucle. Ceci implique que la boucle ne tourne qu'un nombre fini de fois.
+
+Dans le cas récursif, on va montrer que l'entrée appartient à un ensemble  bien fondé et qu'à chaque appel récursif,  l'entrée diminue strictement. La profondeur des appels récursifs est donc finie.
+
+Dans l'exemple de calcul récursif de pgcd, le couple $(a,b)$ est un couple d'entiers strictement positifs et s'il y a un appel récursif, il se fait sur un couple $(a',b')$ d'entiers strictement positifs qui est strictement inférieur à $(a,b)$ pour l'ordre lexicographique. 
+Comme cet ordre est bien fondé, il n'existe donc pas de suites infinies strictement décroissantes pour cet ordre et donc l'algorithme termine.
+
+
+
+\begin{exo}
+On suppose que l'on a une fonction \texttt{isPrime(n)} prenant  un entier et renvoyant un booléen, et une fonction \texttt{getNonTrivialDivisor(n)} prenant un nombre $>2$ composé et renvoyant un diviseur non trivial de ce nombre.
+
+Rédiger la preuve de terminaison de la fonction suivante, prenant en entrée un entier strictement positif.
+\begin{lstlisting}[language=Python]
+def mystere(n):
+	# input : un entier >=2 
+	if isPrime(n):
+		return 1
+	a = getNonTrivialDivisor(n)
+	return mystere(a) + mystere(n/a)
+\end{lstlisting}
+\end{exo}
+
+\section{Ouverture}
+
+Il existe beaucoup de littérature sur les préordres. Voir par exemple :
+\begin{enumerate}
+\item \url{https://en.wikipedia.org/wiki/Well-quasi-ordering}
+\item Well quasi-orders for algorithms, (cours de L3 info) \url{https://wikimpri.dptinfo.ens-cachan.fr/lib/exe/fetch.php?media=cours:upload:poly-2-9-1v02oct2017.pdf}
+\end{enumerate}
+
+
+\end{document}
+
+
+
+(idée TP : calculer la complexité en moyenne sur des entiers bornés par N ? regarder https://alainbusser.frama.io/NSI-IREMI-974/euclide.html )
+
+- petit exo (garder pour exam ?)(terminaison facile, correction aussi, virer dans autre fichier)
+Q : que fait la fonction suivante ?
+```python
+def mystere(a: int) -> int:
+	if a < 0:
+		a = -a
+	c = 0
+	b = a
+	while b != 0:
+		c += a
+		b -= 1
+	return c
+
+```
+
+- soustraction entière:
+```python
+def soustr(m,n):
+	if n == 0: return m
+	if m == 0: return 0
+	return soustr(m-1,n-1)
+```
+vu sur https://www.lip6.fr/Christine.Tasson/doc/cours/M1sem/TD1.pdf
+Exercices : ordre lexicographique, ordre multiset et application à la terminaison du parcours des graphes ?
+
+- algo aléatoire (d'après Dowek) (garder pour examen?)(non, donner tt de suite)
+source : https://math.univ-lyon1.fr/irem/IMG/pdf/terminaison_avec_solutions.pdf page 4
+```python
+# rand() est une fonction retournant un nombre entier altéoire non borné !!
+def f(n,p):
+	if p != 0:
+		return f(n,p-1)
+	elif n != 0:
+		return f(n-1,rand())
+	else:
+		return 0 
+```
+
+Si rand() est bornée a priori par $M$, alprs il y a au plus $p + (n-1)*M$ appels.
+Mais même si rand() n'est pas bornée, ça termine car le couple décroit strictement pour l'ordre lexicographique.
+
+- Petites suites de Goodstein (d'après Dowek) (garder pour exam ou TP)
+source : toujours https://math.univ-lyon1.fr/irem/IMG/pdf/terminaison_avec_solutions.pdf
+On écrit un nombre en base deux, 
+on interprete en base trois, on enlève un et on considère l'écriture en base 3.
+on interprete comme une écriture en base 4. On enlève un, on écrit en base quatre
+etc...
+Montrer... que la suite stationne à zéro !!
+
+Preuve : la suite des chiffres (dans des bases qui augmentent, et quitte à mettre des zéros devant) est strictement décroissante dans N^r, si r est la quantité initiale de chiffres en base deux.
+
+
+Non vu mais demander aux étudiants de se renseigner, potentiel exo d'examen ?
+---
+
+Treillis (deux éléments ont une borne sup et une borne inf), treillis complets, fonditions monotones, théorème de points fixes
+
+point d'entrée : http://lim.univ-reunion.fr/staff/fred/Stages-Ters-Theses/Richard-Fontaine/Equivalence-et-Ordres.pdf
+(ou option info)
