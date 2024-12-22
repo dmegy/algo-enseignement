@@ -138,7 +138,7 @@ L'\textbf{ordre strict} associé à $\leq$ est la relation binaire $<_E$ sur $E$
 \item Si $(E,\leq_E)$ et $(F,\leq_F)$ sont des ensembles ordonnés, l'ensemble produit $E\times F$ peut être muni:
 \begin{enumerate}
 \item de l'\textbf{ordre produit}, définie par :
-\[ (e,f) \leq_{E\times F} (e',f') \iff e\leq_E e' \text{ et }f\leq_F f';\]
+\[ (e,f) \leq_{prod} (e',f') \iff e\leq_E e' \text{ et }f\leq_F f';\]
 \item de l'\textbf{ordre lexicographique}, défini par 
 \[ (e,f) \leq_{lex} (e',f') \iff (e <_E e' \text{ ou } (e=e' \text{ et }f\leq_F f') ).\]
 \end{enumerate}
@@ -156,13 +156,16 @@ L'\textbf{ordre strict} associé à $\leq$ est la relation binaire $<_E$ sur $E$
 \item Montrer que l'ordre produit sur $\N^2$ n'est pas total.
 \item Montrer que la divisibilité sur $\N$ n'est pas un ordre total.
 \item Montrer que l'ordre lexicographique sur $\N^2$ est total.
-\item Montrer que si $E$ et $F$ sont bien ordonnés, l'ordre lexicographique sur le produit $E\times F$ est un ordre total.
+%\item Montrer que si $E$ et $F$ sont totalement ordonnés, l'ordre lexicographique sur le produit $E\times F$ est un ordre total.
 \end{enumerate}
 \end{exo}
 
+
 Une suite dans un ensemble $E$ est un élément de $E^\N$, c'est-à-dire une application de $\N$ dans $E$.
 On note en général les suites comme des familles indexées par $\N$, par exemple comme ceci :  $u = (u_n)_{n\in\N}$.
-Si l'ensemble $E$ est muni d'une relation d'ordre $\leq_E$, Une suite est (strictement) (dé)croissante si l'application en question est (strictement) (dé)croissante, vue comme application entre les ensembles ordonnés $(\N,\leq)$ (ordre usuel) et $(E,\leq_E)$.
+
+
+Si l'ensemble $E$ est muni d'une relation d'ordre $\leq_E$, une suite est (strictement) (dé)croissante si l'application en question est (strictement) (dé)croissante, vue comme application entre les ensembles ordonnés $(\N,\leq)$ (ordre usuel) et $(E,\leq_E)$.
 
 
 
@@ -177,6 +180,9 @@ On dit que :
 \end{enumerate}
 (On définit de même la notion de plus grand élément et d'élément maximal.)
 \end{definition}
+
+\paragraph{Mise en garde} 
+Dans beaucoup de références, on voit \og élément minimum\fg{} au lieu de \og plus petit élément\fg. Attention alors à ne pas confondre élément \emph{minimum} et \emph{minimal}.
 
 \begin{exemples}
 \begin{enumerate}
@@ -227,11 +233,18 @@ Un ensemble est bien fondé ssi toute suite décroissante est stationnaire.
 
 
 
-\begin{exo} Soient $E$ et $F$ des ensembles ordonnés.
-%le produit d'ordres totaux n'est pas total.
-% le produit de bon ordres n'est pas un bon ordre
-Si $E$ et $F$ sont bien fondés, le produit $E\times F$ muni de l'ordre lexicographique est bien fondé.
-\end{exo}
+\begin{proposition} Soient $E$ et $F$ des ensembles ordonnés bien fondés.
+Le produit $E\times F$ muni de l'ordre lexicographique est bien fondé.
+\end{proposition}
+\begin{proof}
+Soit $X \subseteq E\times F$ une partie non vide.
+Soit $A = \{e \in E\:\mid\: \exists f\in F, (e,f)\in X\}$ la projection de $X$ sur $E$, c'est-à-dire l'ensemble des premières coordonnées des éléments de $X$.
+La partie $A\subseteq E$ est non vide, donc elle contient un élément minimal $m_1$.
+Soit maintenant $B = \{f\in F\:\mid\: (m_1,f) \in X\}$.
+La partie $B \subseteq F$ est non vide, elle contient un élément minimal $m_2$.
+
+Alors, l'élément $(m_1,m_2)$ est un élément minimal de $X$ par construction : si un élément $(x,y) \in X$ vérifiait en effet $(x,y) <_{lex} (m_1,m_2)$, on aurait soit $x < m_1$, soit $x=m_1$ et $y<m_2$, ce qui est impossible par construction dans les deux cas.
+\end{proof}
 
 %Exemple d'ensemble pas bien fondé : mots sur un alphabet, avec l'ordre lexicographique.
 %Même si sur l'alphabet c'est bien fondé, on a 
@@ -239,9 +252,9 @@ Si $E$ et $F$ sont bien fondés, le produit $E\times F$ muni de l'ordre lexicogr
 %Par contre l'ordre prefixe est bien fondé.
 
 
-\begin{theoreme}[Principe de récurrence généralisée / récurrence transfinie / récurrence bien fondée]
+\begin{theoreme}[Principe de récurrence généralisée / récurrence bien fondée]
 Soit $(E,\leq)$ un ensemble bien fondé et soir $<$ l'ordre strict associé.
-Soit $\mathcal P(x)$ un prédicat sur $E$. (Une assertion à paramètre $x\in E$, autrement dit une fonction de $E$ dans les booléens.)
+Soit $\mathcal P(x)$ un prédicat\footnote{Une assertion à paramètre $x\in E$, autrement dit une fonction de $E$ dans les booléens.} sur $E$. 
 
 Supposons que : 
 \[ \forall x, (\forall y< x, P(y)) \implies P(x)\]
@@ -257,7 +270,7 @@ Supposons par l'absurde que  $\forall x\in E, P(x)$ soit fausse.
 La partie $A := \{x\in E, non(P(x))\}$ est alors non vide.
 Elle possède donc un élément minimal, que l'on note $m$.
 Par définition, $\forall y\in E, y< m \implies y\not\in A$, c'est-à-dire $\forall y\in E, y< m \implies P(m)$.
-D'après $H$, on en déduit $P(m)$, contradiction.
+D'après $(H)$, on en déduit $P(m)$, contradiction.
 \end{proof}
 
 \begin{remarque}
@@ -268,7 +281,7 @@ L'hypothèse $\forall x, (\forall y< x, P(y)) \implies P(x)$ ressemble à une hy
 \section{Application : terminaisons d'algorithmes}
 
 Rappel : la terminaison d'un algorithme n'est pas toujours facile à déterminer.
-L'exemple le plus célèbre est  la conjecture de Syracuse, ou problème de Collatz : il n'est pas connu si la fonction suivante termine pour toute entrée $n\in\N$ :
+L'exemple le plus célèbre est  la conjecture de Syracuse, ou problème de Collatz : il n'est pas connu si la fonction Python ci-dessous termine pour toute entrée $n\in\N$ :
 
 \begin{lstlisting}[language=Python]
 def Syracuse(n):
@@ -300,32 +313,112 @@ def pgcd(a: int, b: int) -> int:
 
 Dans ce genre de situation, une technique de rédaction possible consiste à utiliser la notion d'ensemble ordonné bien fondé.
 
-Dans le cas itératif, on va identifier un variant de boucle à valeur dans un ensemble bien fondé, qui décroit strictement à chaque tour de boucle. Ceci implique que la boucle ne tourne qu'un nombre fini de fois.
+\begin{enumerate}
+\item Dans le cas itératif, on va identifier un variant de boucle à valeur dans un ensemble bien fondé, qui décroit strictement à chaque tour de boucle. Ceci implique que la boucle ne tourne qu'un nombre fini de fois.
+\item Dans le cas récursif, on va montrer que l'entrée appartient à un ensemble  bien fondé et qu'à chaque appel récursif,  l'entrée diminue strictement. La profondeur des appels récursifs est donc finie.
+\end{enumerate}
 
-Dans le cas récursif, on va montrer que l'entrée appartient à un ensemble  bien fondé et qu'à chaque appel récursif,  l'entrée diminue strictement. La profondeur des appels récursifs est donc finie.
+
+
 
 Dans l'exemple de calcul récursif de pgcd, le couple $(a,b)$ est un couple d'entiers strictement positifs et s'il y a un appel récursif, il se fait sur un couple $(a',b')$ d'entiers strictement positifs qui est strictement inférieur à $(a,b)$ pour l'ordre lexicographique. 
 Comme cet ordre est bien fondé, il n'existe donc pas de suites infinies strictement décroissantes pour cet ordre et donc l'algorithme termine.
 
+%\begin{exemple}[Échauffement]
+%La fonction suivante prend deux entiers naturels en entrée. 
+%Prouver sa terminaison et dire ce qu'elle fait.
+%\begin{lstlisting}[language=Python]
+%def f(m,n):
+%	# input : m, n entiers naturels
+%	if n == 0:
+%		return m
+%	if m == 0:
+%		return 0
+%	return f(m-1,n-1)
+%\end{lstlisting}
+%\end{exemple}
 
+\begin{exemple}
+On suppose que l'on a une fonction \texttt{isPrime(n)} prenant  un entier et renvoyant un booléen, et une fonction \texttt{getNonTrivialDivisor(n)} prenant un nombre composé et renvoyant un diviseur non trivial de ce nombre.
 
-\begin{exo}
-On suppose que l'on a une fonction \texttt{isPrime(n)} prenant  un entier et renvoyant un booléen, et une fonction \texttt{getNonTrivialDivisor(n)} prenant un nombre $>2$ composé et renvoyant un diviseur non trivial de ce nombre.
-
-Rédiger la preuve de terminaison de la fonction suivante, prenant en entrée un entier strictement positif.
+Rédiger la preuve de terminaison de la fonction suivante, prenant en entrée un entier strictement positif. On utilisera la divisibilité sur $\N\setminus\{0,1\}$.
 \begin{lstlisting}[language=Python]
-def mystere(n):
+def surprise(n):
 	# input : un entier >=2 
 	if isPrime(n):
 		return 1
 	a = getNonTrivialDivisor(n)
-	return mystere(a) + mystere(n/a)
+	return surprise(a) + surprise(n/a)
 \end{lstlisting}
-\end{exo}
+(Remarque : on pourrait être tenté de rédiger par récurrence forte sur $\N$, mais dans ce cas, il faut traiter à part le cas des nombres premiers. Il est plus élégant d'utiliser l'ordre de divisibilité et la récurrence bien fondée associée à cet ordre.)
+
+\end{exemple}
+
+
+\begin{exemple}% vu sur https://math.univ-lyon1.fr/irem/IMG/pdf/terminaison_avec_solutions.pdf
+On suppose que l'on a une fonction \texttt{rand()} qui renvoie un nombre naturel (pseudo)aléatoire, non borné a priori.
+Montrer la terminaison de la fonction suivante, qui prend deux nombres naturels en entrée. On utilisera l'ordre lexicographique.
+\begin{lstlisting}[language=Python]
+# rand() est une fonction retournant un nombre naturel aleatoire
+def f(n,p):
+	if p != 0:
+		return f(n,p-1)
+	elif n != 0:
+		return f(n-1,rand())
+	else:
+		return 0 
+\end{lstlisting}
+(Remarque : si la fonction \texttt{rand()} était a priori bornée par un entier $M$, on pourrait montrer la terminaison de \texttt{f(n,p)} en majorant\footnote{On peut majorer le nombre d'appels récursifs par $p + (n-1)M$.} a priori le nombre d'appels récursifs en fonction de $n$, $p$ et $M$.
+Mais dans l'énoncé donné, on ne peut pas procéder ainsi, et on ne peut pas majorer a priori le nombre d'appels récursifs. Néanmoins, on peut montrer que la fonction termine toujours.)
+\end{exemple}
+
+\paragraph{À retenir}
+Il existe donc des algorithmes dont on arrive à montrer la terminaison tout en étant incapable de majorer le temps de terminaison en fonction de l'entrée.
+Cette situation est nouvelle par rapport aux situation vues précédemment en cours, dans lesquelles on pouvait en général majorer le nombre d'appels récursifs ou de tours de boucle qui allaient être effectués sur une entrée donnée.
+
+\begin{exemple}(Fonction d'Ackermann-Péter)
+Prouver la terminaison de la fonction suivante, qui prend en entrée deux entiers naturels, en utilisant l'ordre lexicographique.
+\begin{lstlisting}[language=Python]
+def AP(m,n):
+	# input : m, n entiers naturels
+	if m == 0:
+		return n+1
+	if n == 0:
+		return AP(m-1,1)
+	return AP(m-1,AP(m,n-1))
+\end{lstlisting}
+\end{exemple}
+
+% Fonction 91 ? Non garder pour l'examen
+
+
+\begin{exemple}[Petites suites de Goodstein]% vu sur https://math.univ-lyon1.fr/irem/IMG/pdf/terminaison_avec_solutions.pdf
+On considère l'algorithme suivant, qui prend un entier naturel $N$ en entrée :
+\begin{enumerate}
+\item on l'écrit en base deux, puis on soustrait $1$;
+\item on interprète cette écriture comme une écriture en base trois, puis on soustrait $1$;
+\item on interprète cette écriture comme une écriture en base quatre, puis on soustrait $1$;
+\item etc.
+\end{enumerate}
+Cette suite d'opérations finit toujours par aboutir  l'entier nul !
+Par exemple si on commence avec $N=6$:
+\begin{enumerate}
+\item on l'écrit en base deux ($\overline{110}^2$), on enlève un  ($\overline{101}^2$), 
+\item on interprète l'écriture en base trois ($\overline{101}^3$), on enlève un ($\overline{100}^3$),
+\item on interprète l'écriture en base quatre ($\overline{100}^4$), on enlève un ($\overline{33}^4$),
+\item etc.
+\end{enumerate} 
+Les valeurs successives de l'entier sont alors $6$, $5$, $10$, $9$, $16$, $15$, $18$, $17$, \dots
+
+L'observation cruciale est la suivante : la longueur des écritures (en base deux, trois, quatre etc) va décroitre au sens large.
+Les chiffres apparaissant dans ces écritures vont eux potentiellement augmenter, mais on peut raisonner sur $\N^r$ muni de l'ordre lexicographique, où $r$ est le nombre de chiffres en base deux de la valeur initiale.
+\end{exemple}
 
 \section{Ouverture}
 
-Il existe beaucoup de littérature sur les préordres. Voir par exemple :
+La récurrence bien fondée est utilisée par de nombreux logiciels de vérification de preuves ou de code informatique. Lorsque ces techniques ne suffisent plus, ils font appel à d'autres méthodes plus récentes.
+
+Lectures possibles pour approfondir: 
 \begin{enumerate}
 \item \url{https://en.wikipedia.org/wiki/Well-quasi-ordering}
 \item Well quasi-orders for algorithms, (cours de L3 info) \url{https://wikimpri.dptinfo.ens-cachan.fr/lib/exe/fetch.php?media=cours:upload:poly-2-9-1v02oct2017.pdf}
@@ -334,7 +427,11 @@ Il existe beaucoup de littérature sur les préordres. Voir par exemple :
 
 \end{document}
 
+\begin{exemple}
+\begin{lstlisting}[language=Python]
 
+\end{lstlisting}
+\end{exemple}
 
 (idée TP : calculer la complexité en moyenne sur des entiers bornés par N ? regarder https://alainbusser.frama.io/NSI-IREMI-974/euclide.html )
 
@@ -353,41 +450,9 @@ def mystere(a: int) -> int:
 
 ```
 
-- soustraction entière:
-```python
-def soustr(m,n):
-	if n == 0: return m
-	if m == 0: return 0
-	return soustr(m-1,n-1)
-```
-vu sur https://www.lip6.fr/Christine.Tasson/doc/cours/M1sem/TD1.pdf
+
+% https://www.lip6.fr/Christine.Tasson/doc/cours/M1sem/TD1.pdf
 Exercices : ordre lexicographique, ordre multiset et application à la terminaison du parcours des graphes ?
-
-- algo aléatoire (d'après Dowek) (garder pour examen?)(non, donner tt de suite)
-source : https://math.univ-lyon1.fr/irem/IMG/pdf/terminaison_avec_solutions.pdf page 4
-```python
-# rand() est une fonction retournant un nombre entier altéoire non borné !!
-def f(n,p):
-	if p != 0:
-		return f(n,p-1)
-	elif n != 0:
-		return f(n-1,rand())
-	else:
-		return 0 
-```
-
-Si rand() est bornée a priori par $M$, alprs il y a au plus $p + (n-1)*M$ appels.
-Mais même si rand() n'est pas bornée, ça termine car le couple décroit strictement pour l'ordre lexicographique.
-
-- Petites suites de Goodstein (d'après Dowek) (garder pour exam ou TP)
-source : toujours https://math.univ-lyon1.fr/irem/IMG/pdf/terminaison_avec_solutions.pdf
-On écrit un nombre en base deux, 
-on interprete en base trois, on enlève un et on considère l'écriture en base 3.
-on interprete comme une écriture en base 4. On enlève un, on écrit en base quatre
-etc...
-Montrer... que la suite stationne à zéro !!
-
-Preuve : la suite des chiffres (dans des bases qui augmentent, et quitte à mettre des zéros devant) est strictement décroissante dans N^r, si r est la quantité initiale de chiffres en base deux.
 
 
 Non vu mais demander aux étudiants de se renseigner, potentiel exo d'examen ?
