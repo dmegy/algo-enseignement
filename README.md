@@ -15,9 +15,10 @@ Découverte de LaTeX
 
 - Pour écrire du latex en ligne : pratique dans certains cas mais vite pénible [overleaf.com](https://www.overleaf.com)
 - Pour écrire du LaTeX chez soi : sur mac c'est normalement déjà installé, sur windows : il faut installer MikTeX puis un éditeur, par exemple TexMaker ou TeXnicCenter (mais en théorie n'importe quel éditeur de texte suffit). Voir plus de détails dans le document suivant.
-- Introduction rapide et efficace : Jérémy Dousselin, [Rudiments de LaTeX](LaTeX/Dousselin_rudiments_LaTeX.pdf)
-- Arnaud Gazagnes, [LaTeX pour le prof de maths](LaTeX/Gazagnes_LaTeX_pour_le_prof_de_maths.pdf)
-- Tisseau, Duma, [Tikz Pour l'impatient](LaTeX/Tisseau_Duma_TikZ_impatient.pdf)
+- Introduction rapide et efficace : Jérémy Dousselin, [Rudiments de LaTeX](LaTeX/Dousselin_rudiments_LaTeX.pdf).
+- Arnaud Gazagnes, [LaTeX pour le prof de maths](LaTeX/Gazagnes_LaTeX_pour_le_prof_de_maths.pdf).
+- Tisseau, Duma, [Tikz Pour l'impatient](LaTeX/Tisseau_Duma_TikZ_impatient.pdf).
+- Pour faire des figures de géométrie plane (beaucoup) plus facilement : le package [tkz-euclide](LaTeX/Matthes_tkz_euclide_fr.pdf) d'Alain Matthes.
 - Maïeul Rouquette, [(Xe)LaTeX pour les sciences humaines](LaTeX/Rouquette_LaTeX_sciences_humaines.pdf) : le seul livre sur LaTeX sans une seule équation !
 
 Suggestion pour apprendre LaTeX rapidement : 
