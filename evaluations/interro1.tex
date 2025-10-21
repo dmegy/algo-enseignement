@@ -1,0 +1,130 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[top=3cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{layout}
+\usepackage{fancyhdr}
+
+\newtheorem*{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem*{nota}{Notation}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rem2}{Remarques}
+\newtheorem{de2}{Définition}
+\newtheorem{pro2}[de2]{Propriété}
+\newtheorem{thm2}[de2]{Théorème}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\usepackage{comment}
+
+
+\title{}
+
+\date{}
+\begin{document}
+
+
+\pagestyle{fancy}
+
+\fancyhead{}
+ \fancyfoot{}
+
+ \lhead{L3 Mathématiques\\pour l'enseignement}
+\chead{\textbf{ Algorithmes pour l'enseignement\\Compléments de géométrie}\\} 
+ \rhead{ Université de Lorraine \\  }
+
+\newcommand{\lb}{\llbracket}
+\newcommand{\rb}{\rrbracket}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+
+
+\newcommand{\md}[3]{#1\ \equiv \ #2 \! \! \! \! \! \pmod {#3} }
+\newcommand{\nmd}[3]{#1 \not \equiv #2 \! \! \! \! \!  \pmod {#3} }
+\newcommand{\mda}[3]{#1 \equiv #2 \! \!  \pmod {#3} }
+\newcommand{\nmda}[3]{#1 \not \equiv #2 \! \! \pmod {#3} }
+\newcommand{\mo}[2]{#1 \! \! \! \! \! \pmod #2 }
+\newcommand{\moa}[2]{#1 \! \!  \pmod {#2} }
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\thispagestyle{fancy}
+\begin{center}
+%    \HRule \\[0.6cm]
+    { \huge \bfseries
+    $ $\\
+Interrogation du 30 septembre 2026
+     \\ [.5cm] }
+    \HRule \\[1cm]
+\end{center}
+
+\begin{center}
+\textbf{Durée : 1 heure 30.\\ Dans toute l'interrogation, le plan euclidien $\mathcal P$ est muni d'un repère orthonormé direct auquel se rapportent les coordonnées et les affixes.}
+\end{center}
+
+
+\begin{ex}
+Géométriquement, à quoi correspond l'application $f : \C\to\C, z\mapsto i\bar z$ ?
+\end{ex}
+
+
+\begin{ex}
+Résoudre sur $\C$ l'équation $z^2=8-6i$.
+\end{ex}
+
+
+\begin{ex}
+Résoudre sur $\C$ l'équation $|z+1|=|z|+1$.
+\end{ex}
+
+\begin{ex}
+Soit $z \in \C$. Montrer:
+\[
+\frac{\left|\Re z\right| + \left|\Im z\right|}{\sqrt 2} \leq |z| \leq \left|\Re z\right| + \left|\Im z\right|
+\]
+Interpréter en termes de carrés et de cercles et faire une figure.
+\end{ex}
+
+
+%------------------------------
+\begin{ex}
+% nom : caractérisation des triangles équilatéraux
+% source : ?
+% tags : triangle équilatéral, angles, distances
+On note comme d'habitude $j=e^{2i\pi/3}$. Soit $ABC$ un triangle.
+\begin{enumerate}
+\item Montrer : $ABC$ équilatéral direct 
+$\iff  a+jb+j^2c=0 \iff  a-b = -j^2(c-b)$.
+\item Montrer : 
+$ABC \text{ équilatéral indirect}  \iff a+j^2b+jc=0$.
+\item En déduire : $ABC \text{ équilatéral}  \iff a^2+b^2+c^2=ab+bc+ca$.
+\end{enumerate}
+\end{ex}
+
+
+\begin{ex}
+% source : Costantini
+% source : https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Napol%C3%A9on
+% nom : Théorème de Napoléon
+% tags : triangle équilatéral, angles, distances
+Soit $ABC$ un triangle direct. Soient $P, Q, R$ tels que $CBP$, $ACQ$ et $BAR$ soient des triangles équilatéraux directs. On note $U, V, W$ les centres de gravité respectifs de ces trois triangles équilatéraux. Montrer que $UVW$ est équilatéral, de même centre de gravité que $ABC$, en utilisant l'exercice précédent.
+\end{ex}
+
+
+\end{document}
