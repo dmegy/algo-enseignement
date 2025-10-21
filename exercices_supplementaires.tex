@@ -1,0 +1,857 @@
+\input{preambule}
+
+%%%%%%%%%%%%%%%%%%%
+
+
+\pagestyle{empty}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Opensolutionfile{solutions}[\jobname.inc]
+
+
+
+\newpage
+\noindent \textbf{\textsf{Université de Lorraine \hfill Faculté des sciences de Nancy}}\\
+\textsf{Nombres complexes \hfill 2025-2026}
+\smallskip\hrule 
+\begin{center}
+{\huge \textbf{Exercice supplémentaires}}
+\end{center}
+\smallskip\hrule 
+
+Le plan est noté $\mathcal P$. Il est muni de sa distance et de son produit scalaire usuels. Il est également muni d'un repère orthonormé direct, relativement auquel on considère les coordonnées cartésiennes et les affixes.
+
+
+\begin{exo}% 4 min
+Soit $f:\mathcal P\to \mathcal P$. Donner la définition mathématique des assertions suivantes:
+\begin{multicols}{4}
+\begin{enumerate}
+\item $f$ est une isométrie.
+\item $f$ est une rotation.
+\item $f$ est une homothétie.
+\item $f$ est une translation.
+%\item $f$ est une symétrie centrale.
+%\item $f$ est une similitude directe.
+\end{enumerate}
+\end{multicols}
+(L'application $f$ est définie par l'énoncé, vous n'avez pas à la redéfinir. Tout le reste doit être défini. On demande les définitions, pas des caractérisations ou des théorèmes vérifiés par ces transformations, ni des exemples, ni des dessins.)
+\begin{sol}
+Cours
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+Soit $f : \mathcal P\to \mathcal P$.
+\begin{enumerate}
+\item Définir l'assertion \og $f$ est une rotation\fg.
+\item On fixe $\Omega\in \P$. Définir l'assertion \og $f$ est une rotation de centre $\Omega$\fg.
+\item On fixe de plus un réel $\theta$. Définir l'assertion \og $f$ est la rotation de centre $\Omega$ et d'angle $\theta$\fg.
+\item Définir l'assertion \og $f$ est une translation\fg.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item L'application $f$ est une rotation si:
+\[ \exists\Omega\in\mathcal P, \:\exists \theta\in\R,\]
+\[ 
+\begin{cases}
+\forall M\in\mathcal P, & \Omega M = \Omega f(M),\\
+\forall M\in\mathcal P\setminus \{\Omega \}, & \widehat{(\overrightarrow{\Omega M},\overrightarrow{\Omega f(M)})}\equiv \theta \mod 2\pi.
+\end{cases}
+\]
+
+\item L'application $f$ est une rotation de centre $\Omega$ si:
+\[ \exists \theta\in\R,\]
+\[ 
+\begin{cases}
+\forall M\in\mathcal P, & \Omega M = \Omega f(M),\\
+\forall M\in\mathcal P\setminus \{\Omega \}, & \widehat{(\overrightarrow{\Omega M},\overrightarrow{\Omega f(M)})}\equiv \theta \mod 2\pi.
+\end{cases}
+\]
+\item L'application $f$ est la rotation de centre $\Omega$ et d'angle $\theta$ si:
+\[ 
+\begin{cases}
+\forall M\in\mathcal P, & \Omega M = \Omega f(M),\\
+\forall M\in\mathcal P\setminus \{\Omega \}, & \widehat{(\overrightarrow{\Omega M},\overrightarrow{\Omega f(M)})}\equiv \theta \mod 2\pi.
+\end{cases}
+\]
+\item L'application $f$ est une translation si:
+\[ \exists \vec u \in \overrightarrow{\mathcal P}, \forall M\in\mathcal P, \overrightarrow{Mf(M)} = \vec u.\]
+\end{enumerate}
+(Définitions avec affixes acceptées.)
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}
+\begin{enumerate}
+\item Montrer l'affirmation suivante:  $\forall (z,w)\in \C^2, |zw|=|z|\cdot|w|$.
+\item L'affirmation suivante est-elle vraie ?
+$\forall (\alpha, \beta) \in \C^2, |\alpha+\beta|^2 = |\alpha|^2+2|\alpha\beta| + |\beta|^2$.
+\item Énoncer et prouver l'inégalité triangulaire. On ne demande pas de prouver la caractérisation du cas d'égalité.
+\end{enumerate}
+\begin{sol}
+Cours.
+\end{sol}
+\end{exo}
+
+
+
+
+
+
+
+
+
+
+\begin{exo}
+\begin{enumerate}
+\item Montrer que l'affirmation suivante est fausse:
+\[ \forall z, z'\in \C, |z+z'| = |z|+|z'|\]
+\item Donner deux nombres complexes non réels $z$ et $z'$ tels que $|z+z'| = |z|+|z'|$.
+\item L'affirmation suivante est-elle vraie ?
+\[ \forall \alpha, \beta \in \C, |\alpha+\beta|^2 = |\alpha|^2+2\Re(\alpha\beta) + |\beta|^2\]
+\item Pour quels complexes $a$ et $b$  l'assertion \og $\Re\left(\frac{a}{b}\right) = \frac{\Re(a)}{\Re(b)}$\fg{} est-elle bien définie ? Est-elle vraie pour tous les $a$ et $b$ pour lesquels elle est bien définie?
+\item Énoncer et prouver l'inégalité triangulaire. On ne demande pas de prouver la caractérisation du cas d'égalité.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Il suffit de trouver un contre-exemple. Soient $z=1$ et $z'=i$. On a $|z+z'|=\sqrt 2$ et $|z|+|z'|=2$, donc $|z+z'|\neq |z|+|z'|$. 
+\item Soient $z=i$ et $z'=2i$. On a bien $|z+z'|=|3i|=3=|z|+|z'|$.
+\item L'assertion est fausse. Preuve : soient $\alpha=i$ et $\beta=i$. On a  $|\alpha+\beta|^2 =4$. Par contre, $|\alpha|^2+2\Re(\alpha\beta) + |\beta|^2 = 1-2+1=0$.
+\item L'assertion est bien définie si et seulement ssi ($b\neq 0$ et $\Re(b)\neq 0$), autrement dit ssi $\Re(b)\neq 0$. Mais l'assertion n'est pas vraie universellement. Par exemple, pour $a=1+i$ et $b=1-i$, on a $\Re(a/b)=\Re(i)=0$ et $\Re(a)/\Re(b)=1$.
+\item Soient $z$ et $z'$ des nombres complexes. Alors $|z+z'|\leq |z|+|z'|$. Preuve : on a 
+\begin{align*}
+&|z+z'|\leq |z|+|z'| \\
+\iff &|z+z'|^2\leq (|z|+|z'|)^2\\
+\iff& |z|^2+2\Re\left(\overline z z'\right)+|z'|^2\leq |z|^2+2|zz'|+|z'|^2\\
+\iff &\Re\left(\overline z z'\right) \leq \abs{zz'}
+\iff \Re\left(\overline zz'\right) \leq \abs*{\overline zz'}
+\end{align*}
+Or, la partie réelle d'un complexe est toujours inférieure à son module, ce qui prouve l'inégalité triangulaire.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}
+Soient $a$ et $b$ deux nombres complexes, avec $b\neq 0$. Les deux assertions ci-dessous sont-elles toujours vraies ?
+\[
+\Re\left(\frac{a}{b}\right) = \frac{\Re(a)\Re(b)+\Im(a)\Im(b)}{|b|^2}
+\quad\text{ et }
+\Im\left(\frac{a}{b}\right) = \frac{\Im(a)\Re(b)+\Re(a)\Im(b)}{|b|^2}
+\]
+\begin{sol}
+En écrivant $\frac{a}{b} = \frac{a\bar b}{|b|^2}$ on voit que la première est vraie, tandis que la seconde semble fausse (le signe $+$ devrait être un $-$). On prouve que la seconde est bien fausse avec un contre-exemple bien choisi.
+\end{sol}
+\end{exo}
+
+%\begin{exo}(enlever, trop dur ?)
+%Soient $a$, $b$ et $c$ des nombres complexes. Montrer que $|a+b+c|\leq|a|+|b|+|c|$, et qu'il y a égalité si et seulement s'il existe $\theta\in\R$ et des réels positifs $r$, $r'$ et $r''$ tels que $a=re^{i\theta}$, $b=r'e^{i\theta}$ et $c=r''e^{i\theta}$.
+%\begin{sol}
+%L'inégalité découle juste de deux applications de l'inégalité triangulaire. Supposons l'égalité. En élevant au carré l'égalité $|a+b+c|=|a|+|b|+|c|$, on obtient
+%\[ |a|^2+|b|^2+|c|^2+2\Re(\bar a b)+2\Re(\bar b c)+2\Re(\bar c a) = |a|^2+|b|^2+|c|^2+2|ab|+2|bc|+2|ca|\]
+%c'est-à-dire 
+%\[ \Re(\bar a b)+\Re(\bar b c)+\Re(\bar c a) = |ab|+|bc|+|ca|\]
+%Autrement dit ,
+%\end{sol}
+%\end{exo}
+
+
+%\begin{exo}(trigo, enlever?)
+%Déterminer des réels $A>0$ et $\phi$ tels que l'on ait, pour tout réel $t$:
+%\[ \sqrt 3 \cos(2t)+3 \sin(2t) = A\sin(2t+\phi)\]
+%Indication : interpréter ces quantités comme des parties imaginaires de certains nombres complexes.
+%\begin{sol}
+%On a 
+%\[ \Im(e^{2it}e^{i\pi/6})=\frac12\cos(2t)+\frac{\sqrt 3}{2}\sin(2t)=\sin(2t+\pi/6).\]
+%Donc \fbox{$A=2\sqrt 3$, $\omega=2$ et $\phi=\pi/6$}.
+%\end{sol}
+%\end{exo}
+
+
+\begin{exo}
+On s'intéresse à l'équation $|2z| = |z-3|$, d'inconnue $z\in\C$. 
+\begin{enumerate}
+\item Dans les deux rédactions A et B  ci-dessous de la résolution de cette équation, relever \textbf{toutes} les fautes ligne par ligne, même si le résultat final est juste. (On ne demande pas simplement de montrer que la rédaction est globalement incorrecte, on demande d'identifier toutes les erreurs indépendamment les unes des autres.)
+\begin{mdframed}
+\begin{multicols}{2}
+Rédaction A: Soit $z\in \C$. On a :  
+\begin{align*}
+ &|2z| = |z-3|\\
+&\iff |2z|^2 = |z-3|^2\\
+&\iff 4z^2 = (z-3)^2\\
+&\iff 3z^2+6z-9=0\\
+&\iff z\in \left\{-3;1\right\}
+\end{align*}
+%\vfill\null
+
+\columnbreak
+Rédaction B: Soit $z\in \C$. On a  : 
+\begin{align*}
+& |2z| = |z-3|\\
+&\iff |2z|^2 = |z-3|^2\\
+&\iff 3|z|^2+6|z|-9=0\\
+&\iff |z|\in \left\{-3;1\right\}\\
+&\iff |z|=1 \text{ car un module est positif}\\
+&\iff z\in\{-1,1\} \}
+\end{align*}
+\end{multicols}
+\end{mdframed}
+\item (BONUS, hors-barème, plus difficile que le reste) Résoudre l'équation sur $\C$. Indication : l'ensemble des solutions forme un cercle.
+\end{enumerate}
+
+\begin{sol}
+\begin{enumerate}
+\item \begin{enumerate}
+\item  La disparition du module à la troisième ligne n'est pas justifiée (et l'équivalence est en fait fausse, contre-exemple : $z=-1+2i$).
+\item  Le passage de la deuxième à la troisième ligne est incorrect (le rédacteur a manifestement pensé que $|a+b|^2=|a|^2+2|ab|+|b|^2$ ce qui n'est pas vrai en général, même  pour des réels), contre-exemple : $z=-1$. Ensuite, il y a une autre erreur à la dernière ligne (sans compter l'accolade en trop) : $|z|=1$ n'est pas équivalent à $z\in\{-1,1\}$ : contre-ex : $z=i$.
+\end{enumerate}
+\item (BONUS) Soit $z\in \C$, $x=\Re(z)$ et $y=\Im(z)$. Alors:
+\begin{align*}
+& |2z| = |z-3|\\
+&\iff |2z|^2 = |z-3|^2\\
+&\iff 4x^2+4y^2=(x-3)^2+y^2\\
+%&\iff 3x^2+3y^2+6x-9=0\\
+&\iff x^2+y^2+2x-3=0\\
+&\iff (x+1)^2+y^2=4
+\end{align*}
+C'est le cercle de centre $(-1,0)$ et de rayon $2$.
+\end{enumerate}
+\end{sol}
+
+\end{exo}
+
+
+
+
+\begin{exo}
+%(composition rotation/translation, modifié d'après Cécile)
+Soit $f$ la translation dirigée par le vecteur d'affixe $1+2i$. Soit $g$ la rotation d'angle $-\pi/2$ et dont le centre a pour affixe $3+i$.
+\begin{enumerate}
+\item Écrire $f$ et $g$ en coordonnée complexe.
+\item Écrire $f\circ g$ et $g\circ f$ en coordonnée complexe.
+\item Déterminer la nature et les éléments caractéristiques de ces deux transformations.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Les applications sont représentées par $\tilde f : \C\to \C, z\mapsto z+1+2i$ et $\tilde g : \C\to \C, z\mapsto -i(z-3-i)+3+i=-iz+4i+2$.
+\item Les deux composées sont $\tilde f \circ \tilde g : z\mapsto -iz+3+6i$ et $\tilde g\circ \tilde f : z\mapsto -iz+3i+4$.
+\item Les deux composées sont des rotations d'angle $-\pi/2$. Le centre de $f\circ g$ est son unique point fixe c'est-à-dire le point d'affixe $\frac{3+6i}{1+i}$ et le centre de $g\circ f$ est le point d'affixe $\frac{4+3i}{1+i}$.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}%4min
+Résoudre l'équation $iz^2+(1-3i)z-3=0$, d'inconnue $z\in \C$.
+\begin{sol}
+Rien de spécial à signaler, le discriminant est $-8+6i$. L'ensemble des solutions est $\{i,3\}$.
+\end{sol}
+\end{exo}
+
+\begin{exo}
+Résoudre sur $\C$ l'équation $z^6=2+2i$. Placer avec précision les solutions sur une grande figure (échelle: 4cm).
+\begin{sol}
+L'ensemble des solutions est $\sqrt[4]{2}e^{i\pi/24}\U_6$. Critère de notation pour le dessin : voir l'hexagone régulier, ensuite voir un décalage d'argument à peu près correct et le rayon un peu plus grand que $1$.
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}%4min
+Résoudre l'équation $3z^2 +(1-3i)z-i =0$, d'inconnue $z\in \C$.
+\begin{sol}
+Le discriminant est $-8+6i$. Ses deux racines carrées sont $1+3i$ et $-1-3i$. L'ensemble des solutions est $\{i,-1/3\}$.
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}
+\begin{enumerate}
+\item Résoudre l'équation $z^2=5-12i$, d'inconnue $z\in \C$.
+\item Résoudre l'équation $z^2-3z+1+3i=0$, d'inconnue $z\in \C$.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Soit $z\in \C$ et notons $a=\Re(z)$ et $b=\Im(z)$. On a les équivalences : 
+\begin{align*}
+z^2 =5-12i
+&\iff \begin{cases}a^2-b^2&= 5\\
+2ab&= -12\\
+ a^2+b^2&=\sqrt{25+144}=\sqrt{169}=13\end{cases}\\
+&\iff \begin{cases}2a^2=5+13=18\\ 2b^2=13-5=8\\ab=-6\end{cases}\\
+&\iff \begin{cases}a\in \{-3,3\}\\b\in \{-2,2\}\\ab=-6\end{cases}
+\end{align*}
+\begin{mdframed}L'ensemble des solutions est $\{3-2i, \: -3+2i\}$.\end{mdframed}
+\item C'est une équation du second degré, son discriminant est $\Delta=5-12i$, dont on a calculé les deux racines carrées complexes à la question précédente. \begin{mdframed}L'ensemble des solutions est donc
+$\{3-i;\: i\}$.\end{mdframed}
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+%(triangles isocèles, facile, ancien exo de TS)
+%https://debart.pagesperso-orange.fr/ts/plan_complexe.html problème 2
+Soient $OAC$ et $OBD$ deux triangles  directs, isocèles rectangles en $O$. On note $M$ le milieu de $[BC]$.
+\begin{enumerate}
+\item Faire une figure.
+\item Montrer que les segments $[AD]$ et $[OM]$ sont perpendiculaires et que $AD=2OM$.
+\end{enumerate}
+\begin{sol}
+On peut supposer que $O$ est l'origine du plan. D'après l'énoncé, on a $c=ia$ et $d=ib$, ainsi que $m=\frac{b+c}{2}$.
+Intéressons-nous aux affixes des vecteurs $\overrightarrow{AD}$ et $\overrightarrow{OM}$. On a $d-a=ib-a$, et $m=\frac{b+c}{2}=\frac{b+ia}{2}$. On en déduit
+\[ \boxed{d-a=2im}\]
+Ceci montre que les segments $[AD]$ et $[OM]$ sont perpendiculaires et que $AD=2OM$.
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+%(arc capable)
+%Deschamps page 86.
+Soient $A$ et $B$ deux points distincts du plan d'affixes $a$ et $b$ vérifiant $b=\bar a$. On note $b=re^{i\theta}$ avec $r\in\R_+^*$ et $\theta\in\R$. L'objectif de l'exercice est de trouver le lieu des points $M$ tels que $\widehat{(\overrightarrow{MA},\overrightarrow{MB})}\equiv \theta \mod 2\pi$. Si $z$ est l'affixe de $M$, on admet que cette condition est équivalente à $e^{-i\theta}\frac{z-b}{z-a} \in\R_+^*$.
+
+\begin{enumerate}
+\item Montrer que ceci équivaut à $a(z-\bar a)(\bar z - \bar a) \in\R_+^*$.
+\item Montrer que ceci équivaut à $a\left(|z|^2-|a|^2\right)+2|a|^2\left(\Re(a)-\Re(z)\right)\in\R_+^*$.
+\item Montrer que $\widehat{(\overrightarrow{MA},\overrightarrow{MB})}\equiv \theta \mod 2\pi$ si et seulement si $M$ appartient à un certain arc de cercle que l'on précisera. (Note : un arc de cercle est l'intersection d'un cercle avec un demi-plan.)
+\item Faire un dessin de cet arc de cercle dans le cas où $a=1-i$. (Unité : 4cm)
+\item Soient $C$ et $D$ les points d'affixes $c=i$ et $d=1$. Tracer sans justification sur une figure (unité : 4cm) le lieu des points $M$ tels que $\widehat{(\overrightarrow{MC},\overrightarrow{MD})}\equiv \pi/4 \mod 2\pi$. Attention aux signe des angles.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+
+\item Pour commencer, on a $e^{-i\theta}\frac{z-b}{z-a}=a\frac{z-\bar a}{z-a}$. Ensuite, on passe de $a\frac{z-\bar a}{z-a}$ à $a(z-\bar a)(\bar z - \bar a)$ en multipliant par $(z-a)(\bar z-\bar a)=\abs{z-a}^2\in\R_+^*$. Donc l'un est dans $\R_+^*$ si et seulement si l'autre l'est également.
+\item Simple calcul, on développe les deux quantités (avec $\Re(a)=(a+\bar a)/2$ et pareil pour $\Re(z)$) et on voit qu'elles sont égales.
+\item Notons que $a$ n'est pas réel, mais que $2|a|^2\left(\Re(a)-\Re(z)\right)$ l'est. Donc pour que $a\left(|z|^2-|a|^2\right)+2|a|^2\left(\Re(a)-\Re(z)\right)\in\R_+^*$, il faut et il suffit que $|z|^2-|a|^2=0$ et que $\Re(a)>\Re(z)$. Autrement dit il faut que $z$ soit sur le centre de centre $O$ et passant par $A$, et qu'il soit dans le demi-plan $\Re(a)>\Re(z)$.
+\item dessin
+\item dessin (éventuellement dans les prochains jours je prendrai le temps de faire des figures sur geogebra et les rajouter ici).
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+%
+%\begin{exo}(cours similitudes, enlever/laisser ?)
+%Soient $A$, $B$, $C$ et $D$ quatre points d'affixes $a$, $b$, $c$ et $d$. On considère l'assertion suivante:
+%\begin{center}
+%\og Il existe une unique similitude directe $f : \mathcal P\to \mathcal P$ telle que $f(A)=C$ et $f(B)=D$.\fg
+%\end{center}
+%Dire si l'assertion est vraie dans chacune des quatre situations suivantes, en justifiant (même si c'est du cours).
+%\begin{multicols}{4}
+%\begin{enumerate}
+%\item $A\neq B$ et $C\neq D$.
+%\item $A\neq B$ et $C=D$.
+%\item $A= B$ et $C\neq D$.
+%\item $A= B$ et $C=D$.
+%\end{enumerate}
+%\end{multicols}
+%Attention aux notations : $a$, $b$, $c$ et $d$ sont les affixes des points, pas les paramètres des similitudes.
+%\end{exo}
+
+\begin{exo}
+%(laisser? d'après bac 2005 obligatoire)
+% https://debart.pagesperso-orange.fr/ts/plan_complexe.html problème 3, bac 2005 obligatoire
+Soient $O$ et $A$ les points d'affixes $0$ et $1$, et $\mathcal C$ le cercle de diamètre $[OA]$. On considère un point $M\in\mathcal C$, distinct de $O$ et de $A$, et on forme les carrés directs $MAPN$ et $MKLO$. Les affixes de tous ces points sont notés par la lettre minuscule correspondante.
+\begin{enumerate}
+\item Faire une figure. (échelle : 4 cm)
+\item Calculer $\left\lvert m-\frac12\right\rvert$.
+\item Calculer $k$, $l$, $n$ et $p$ en fonction de $m$.
+\item Montrer que le milieu $\Omega$ de $[LP]$ ne dépend pas de la position de $M$. Quel est son affixe ?
+\item Montrer que la distance $\Omega N$ ne dépend pas de la position de $M$. Quelle est la nature du triangle $\Omega NK$ ?
+\item Montrer que $N$ appartient à un cercle qui ne dépend pas de $M$ : préciser le centre et le rayon de ce cercle.
+\end{enumerate}
+
+\begin{sol}
+(D'après bac 2005 obligatoire)\\
+Soient $O$ et $A$ les points d'affixes $0$ et $1$, et $\mathcal C$ le cercle de diamètre $[OA]$. On considère un point $M\in\mathcal C$, distinct de $O$ et de $A$, et on forme les carrés directs $MAPN$ et $MKLO$. Les affixes de tous ces points sont notés par la lettre minuscule correspondante.
+\begin{enumerate}
+\item (On placer $M$ sur la partie supérieur ou inférieure du cercle, les figures sont différentes mais ça ne change rien.)
+\item On a $\left\lvert m-\frac12\right\rvert=\frac12$ puisque le cercle est par définition centré sur le point d'affixe $1/2$ et de rayon $1/2$.
+\item Le point $K$ est l'image du point $O$ par rotation de centre $M$ et d'angle $-\pi/2$. On en déduit que $k-m=-i(0-m)$ et donc \fbox{$k=(i+1)m$.}\\
+On obtient de même
+\[ l=im;\quad n=i+m(1-i)\text{ et }p=1+i-im.\]
+\item Le milieu de $[LP]$ a pour affixe $\omega=\frac{l+p}{2}=\frac{1+i}{2}$. Il ne dépend pas de $m$.
+\item On a $n-\omega = i+m(1-i)-\frac{1+i}{2}= (1-i)(m-1/2)$. D'après la première question on a $|m-1/2|=1/2$, donc $\Omega N = \frac{\sqrt 2}{2}$. 
+D'autre part, $k-\omega = (1+i)m-\frac{1+i}{2} = (1+i)(m-1/2)$. On voit donc que $k-\omega=i(n-\omega)$ et donc $\Omega NK$ est isocèle rectangle en $\Omega$ 
+\item La question précédente montre que $N$ appartient au cercle de centre $\Omega$ et de rayon $\sqrt 2/2$.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}
+\begin{enumerate}
+\item Question de cours : Soit $n\in\N^*$. Donner la définition de l'ensemble $\U_n$ des racines $n$-èmes de l'unité. (On ne demande pas les éléments, voir prochaine question : on demande la définition de l'ensemble.)
+\item Question de cours : déterminer en justifiant tous les éléments de $\U_4$, en les écrivant sous forme algébrique.
+\item Résoudre sur $\C$ l'équation $(z+1)^4=(z-1)^4$ et mettre les solutions sous forme algébrique.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Cours : $\U_n:=\left\{z\in\C\middle|z^n=1 \right\}$
+\item 
+Soit $z\in\C$. Alors:
+\begin{align*}
+z^4=1
+&\iff z^4-1=0\\
+&\iff (z^2+1)(z^2-1)=0 \\
+&\iff (z+i)(z-i)(z+1)(z-1)=0
+\end{align*}
+Donc $\U_4=\{1,i,-1,-i\}$.
+\item \textbf{Première méthode} : comme $1$ n'est pas une solution de l'équation, on peut résoudre sur $\C\setminus \{1\}$. Si $z\in \C\setminus \{1\}$, on a alors
+\begin{align*}
+(z+1)^4=(z-1)^4
+&\iff \left(\frac{z+1}{z-1}\right)^4=1\\
+&\iff \frac{z+1}{z-1} \in\{1,i,-1,-i\}
+\end{align*}
+Il est clair que $\frac{z+1}{z-1}\neq 1$, il y a donc en fait trois cas à traiter. On a successivement:
+\begin{enumerate}
+\item $\frac{z+1}{z-1}=i\iff z=-i$;
+\item $\frac{z+1}{z-1}=-1\iff z=0$;
+\item $\frac{z+1}{z-1}=-i\iff z=i$.
+\end{enumerate}
+L'équation a donc trois solutions : $i$, $0$ et $-i$.\\
+\textbf{Deuxième méthode} : on développe, et comme l'exercice n'est pas très difficile ça se passe bien: 
+\begin{align*}
+&(z+1)^4=(z-1)^4\\
+&\iff z^4+4z^3+6z^2+4z+1\\
+&\quad\quad\quad=z^4-4z^3+6z^2-4z+1\\
+&\iff z(z^2+1)=0\\
+\end{align*}
+D'où trois solutions $i$, $0$ et $-i$. 
+%\textbf{Autres méthodes} : on peut factoriser en remarquant que $a^4-b^4=(a^2-b^2)(a^2+b^2)=(a-b)(a+b)(a+ib)(a-ib)$.\\
+%(Lorsque l'exposant est supérieur à $4$, seule la première méthode fonctionne sauf cas particulier.)
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+%(composition rotation/translation, modifié d'après Cécile)
+Soit $f:\mathcal P\to\mathcal P$ la symétrie centrale dont le centre a pour affixe $2i$. Soit $g:\mathcal P\to\mathcal P$ la rotation d'angle $-\pi/2$ et dont le centre a pour affixe $2+i$.
+\begin{enumerate}
+\item Écrire $f$ et $g$ en coordonnée complexe.
+\item Écrire $f\circ g$ et $g\circ f$ en coordonnée complexe.
+\item Déterminer la nature et les éléments caractéristiques de ces deux transformations.
+\item Donner un exemple d'application $h:\mathcal P\to \mathcal P$ qui commute avec $f$, c'est-à-dire qui vérifie $f\circ h=h\circ f$.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Les applications sont représentées par $\tilde f : \C\to \C, z\mapsto -(z-2i)+2i=\boxed{-z+4i}$ et $\tilde g : \C\to \C, z\mapsto -i(z-2-i)+2+i=\boxed{-iz+1+3i}$.
+\item Les deux composées sont $\tilde f \circ \tilde g : z\mapsto \boxed{iz-1+i}$ et $\tilde g\circ \tilde f : z\mapsto \boxed{iz+5+3i}$.
+\item Les deux composées sont des rotations d'angle $\pi/2$. Le centre de $f\circ g$ est son unique point fixe c'est-à-dire le point d'affixe $\frac{-1+i}{1-i}=\boxed{-1}$ et le centre de $g\circ f$ est le point d'affixe $\frac{5+3i}{1-i}=\boxed{1+4i}$.
+\item Choix les plus simples : $h=\Id_{\mathcal P}$ ou bien $h=f$. (Plus généralement, toute rotation de même centre que $f$ convient.)
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+%(carrés extérieurs, encore plus facile, enlever ?)
+%https://debart.pagesperso-orange.fr/ts/plan_complexe.html problème 1
+Soit $ABCD$ un carré direct et $G$ un point de $[BC]$. On construit deux carrés directs $CGHL$ et $GBEF$. Ils sont donc extérieurs à $ABCD$, de côtés $[CG]$ et $[GB]$.
+On note $K$, $M$ et $N$ les centres des trois carrés $ABCD$, $CGHL$ et $GBEF$.
+\begin{enumerate}
+\item Faire une figure.
+\item Montrer que les droites $(BM)$ et $(KN)$ sont orthogonales et que $BM = KN$. Pour cela on pourra écrire les affixes $k$, $m$ et $n$ en fonction d'autres affixes.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Figure.
+\item Comme $C$ est l'image de $B$ par la rotation de centre $K$ et d'angle $\pi/2$, on a $c=i(b-k)+k$ et donc $k=\frac{c-ib}{1-i}$. On obtient de même $m=\frac{g-ic}{1-i}$ et $n=\frac{b-ig}{1-i}$. On en déduit
+\begin{align*}
+\frac{m-b}{n-k}
+&=
+\frac{g-ic-b(1-i)}{b-ig-(c-ib)}\\
+&=\frac{g-ic-b+ib}{b-ig-c+ib}\\
+&=\boxed{i}
+\end{align*}
+Ceci implique que $[KN]$ et $[BM]$ sont orthogonaux et ont même longueur.
+\end{enumerate}
+%Remarque : si quelqu'un remarque que c'est le théorème de Van Aubel de la feuille de TD avec un quadrilatère ayant un côté de longueur nulle et en plus applati, je propose de mettre tous les points !!
+\end{sol}
+\end{exo}
+
+
+
+
+
+%\begin{exo}(trigo, enlever?)
+%Déterminer des réels $A>0$ et $\phi$ tels que l'on ait, pour tout réel $t$:
+%\[ \sqrt 3 \cos(2t)+3 \sin(2t) = A\sin(2t+\phi)\]
+%Indication : interpréter ces quantités comme des parties imaginaires de certains nombres complexes.
+%\begin{sol}
+%On a 
+%\[ \Im(e^{2it}e^{i\pi/6})=\frac12\cos(2t)+\frac{\sqrt 3}{2}\sin(2t)=\sin(2t+\pi/6).\]
+%Donc \fbox{$A=2\sqrt 3$, $\omega=2$ et $\phi=\pi/6$}.
+%\end{sol}
+%\end{exo}
+
+
+\begin{exo}
+Soit $ABCD$ un parallélogramme direct. Sur ses côtés $[AB]$ et $[BC]$, on colle des triangles équilatéraux indirects $ABC'$ et $BCA'$ (ils se situent donc à l'extérieur du parallélogramme). On rappelle que les affixes des points sont notés par la lettre minuscule correspondante.
+\begin{enumerate}
+\item Faire une figure.
+\item Écrire  $d$ en fonction de $a$, $b$ et $c$.
+\item On rappelle que l'on note $j=e^{2i\pi/3}$. Calculer en justifiant $1+j+j^2$ et écrire $e^{i\pi/3}$ et $e^{-i\pi/3}$ en fonction de $j$.
+\item Écrire $c'$ et $a'$ en fonction de $a$, $b$ et $c$ ainsi que de $j$.
+\item Montrer que $DC'A'$ est équilatéral. (On pourra considérer une rotation, par exemple de centre $A'$, ou utiliser toute autre méthode.)
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Comme $ABCD$ est un parallélogramme, on a  $d-a=c-b$ autrement dit $d=a+c-d$.
+\item On a $1+j+j^2=\frac{1-j^3}{1-j}=\frac{0}{1-j}=0$.
+\item Comme $C'$ est l'image de $B$ par la rotation de centre $A$ et d'angle $\pi/3$, on en déduit que $c'=e^{-i\pi/3}(b-a)+a=-j(b-a)+a=a(1+j)-jb$. On obtient avec le même raisonnement $a'=-j(c-b)+b=b(1+j)-jc$.
+\item  L'image de $C'$ par la rotation de centre $A'$ et d'angle $-\pi/3$ a pour affixe
+\begin{align*}
+&-j(c'-a')+a'\\
+&=-j\left[(a(1+j)-jb) -(b(1+j)-jc)\right]+b(1+j)-jc \\
+&=a\left(-j^2-j\right)+b\left(j^2+j+j^2+j+1\right)+c\left(-j^2-j\right)\\
+&= a-b+c\\
+&=d
+\end{align*}
+Donc $D$ est l'image de $C'$ par la rotation de centre $A'$ et d'angle $-\pi/3$ et donc $A'C'D$ est équilatéral indirect.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+
+\begin{exo}
+On définit une suite de nombres complexes $(u_n)_{n\in\N}$ par $u_0=1$ et la relation de récurrence:
+\[\forall n\in\N, u_{n+1}=i\cdot u_n+1\]
+Que vaut $u_4$ ? Et $u_{50}$ ? 
+\begin{sol}
+On calcule $u_1=1+i$, $u_2=i$, $u_3=0$ et \fbox{$u_4=1$}.
+On comprend donc que la suite va être périodique de période quatre, c'est-à-dire  que pour tout  $n\in\N$, on a  $u_{n+4}=u_n$. On peut le montrer de différentes manières. Donnons par exemple une preuve directe. Soit $n\in\N$. On obtient :
+\begin{align*}
+u_{n+2} &= i\cdot u_{n+1}+1=i(i u_n+1)+1=-u_n+1+i,\\
+u_{n+3} &= i\cdot u_{n+2}+1=i(-u_n+1+i)+1=-i\cdot u_n+i,\\
+u_{n+4} &= i\cdot u_{n+3}+1=i(-i\cdot u_n+i)+1=u_n.
+\end{align*}
+Donc la suite est bien $4$-périodique. Comme $50=4\times12 + 2$, on en déduit que \fbox{$u_{50} = u_2=i$.}
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}
+Soient $A$ et $B$ les points ayant pour affixes  $a=1+i$ et $b=2+3i$. Soit $M$ un point distinct de $A$, d'affixe $z$. 
+%Montrer que $A$, $B$ et $M$ sont alignés si et seulement si $\Im\big( (1-2i)z \big)=-1$.
+Montrer que $(AM) \bot (AB)$ si et seulement si  $\Re\big( (1-2i)z \big)=3$.
+\begin{sol}
+Les vecteurs $\overrightarrow{AM}$ et $\overrightarrow{AB}$ ont pour affixe $z-(1+i)$ et $1+2i$. On a alors:
+\begin{align*}
+(AM) \bot (AB)
+&\iff \overrightarrow{AB}\cdot \overrightarrow{AM}=0\\
+&\iff \Re(\overline{(1+2i)}(z-(1+i)))=0\\
+&\iff \Re(\overline{(1+2i)}z) = \Re(\overline{(1+2i)}(1+i))\\
+&\iff \Re\big( (1-2i)z \big)=3
+\end{align*}
+\end{sol}
+\end{exo}
+
+\begin{exo}
+
+\begin{enumerate}
+\item Soit $n\in \N^*$. Définir l'ensemble $\U_n$.
+\item Soit $z\in \C$. Définir l'assertion \og $z$ est une racine de l'unité.\fg
+\item Le nombre complexe $e^{i\pi/3}$ est-il une racine de l'unité ?
+%\item Trouver un nombre complexe de module un qui n'est pas racine de l'unité. (Plus dur. Je l'ai fait à mon groupe, et je l'ai rajouté dans le poly, mais on peut peut-être l'enlever, ou mettre explicitement \og bonus\fg{} pour ne pas leur faire perdre de temps au début.)
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Par définition, $\U_n=\left\{z\in\C\:\middle|\:z^n=1 \right\}$.
+\item Par définition, $z$ est une racine de l'unité si et seulement : $\exists n\in\N^*, z^n=1$.
+\item Comme $\left(e^{i\pi/3}\right)^6 = 1$, le nombre complexe $e^{i\pi/3}$ est une racine $6$-ème de l'unité. C'est donc une racine de l'unité.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+%(théorème de Bottema)
+Soit $ABC$ un triangle direct. Sur ses côtés $[AC]$ et $[BC]$, on place extérieurement des carrés, c'est-à-dire que l'on considère des carrés directs $ACDE$ et $CBFG$. Enfin, on considère $M$ le milieu de $[EF]$. L'objectif de l'exercice va être de montrer que $ABM$ est isocèle rectangle en $M$. Les affixes de tous ces points sont notés par la lettre minuscule correspondante.
+
+\begin{enumerate}
+\item Tracer une figure (grande et précise : les figures trop petites ou non soignées n'obtiendront pas de points).
+\item Écrire en coordonnée complexe la rotation de centre $A$ et d'angle $\pi/2$.
+\item En utilisant cette rotation, écrire $e$ en fonction de $a$ et $c$.
+\item À l'aide d'un raisonnement similaire, écrire $f$ en fonction de $b$ et $c$.
+\item En déduire une écriture de $m$ en fonction de $a$ et $b$.
+\item Conclure.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Figure
+\item La rotation de centre $A$ et d'angle $\pi/2$ s'écrit, en coordonnée complexe: \fbox{$z\mapsto i(z-a)+a$.}
+\item Par construction, $E$ est l'image de $C$ par cette rotation, donc \fbox{$e=i(c-a)+a$.}
+\item En suivant le même raisonnement, $F$ est l'image de $C$ par la rotation de centre $B$ et d'angle $-\pi/2$, donc : 
+\fbox{$f=-i(c-b)+b$.}
+\item Comme $m=\frac{e+f}{2}$, on obtient, en remplaçant:
+\[ m=\frac{ic-ia+a-ic+ib+b}{2} = \boxed{\frac{a(1-i)+b(1+i)}{2}.}\]
+\item Il suffit de montrer que $B$ est l'image de $A$ par la rotation $\rho$ de centre $M$ et d'angle $\pi/2$. Cette rotation s'écrit $\tilde\rho : z\mapsto i(z-m)+m$. On a alors:
+\begin{align*}
+\tilde\rho(a) 
+&=i(a-m)+m\\
+&= \frac{i\left(2a -(a(1-i)+b(1+i)\right) + a(1-i)+b(1+i) }{2}\\
+&= \frac{a(2i-i+i^2+1-i)+b(-i-i^2+1+i)}{2} \boxed{= b.}
+\end{align*}
+%(Autre méthode :  on peut voir que
+%\[ m-b = \frac{a(1-i)+b(-1+i)}{2} = (a-b)\frac{1-i}{2}, \]
+%ce qui montre que $\widehat{(\overrightarrow{BA},\overrightarrow{BM})}\equiv -\pi/4 \mod 2\pi$, et que $AB=MB\sqrt 2$, ce qui suffit à montrer le résultat.)
+
+
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+\begin{exo}
+Montrer que l'assertion suivante est fausse:
+\begin{center}
+\og Pour toutes rotations $f$ et $g$ du plan, on a $f\circ g = g\circ f$.\fg
+\end{center}
+\begin{sol}
+Soit $f$ la rotation de centre $O$ et d'angle $\pi$, et $g$ la rotation de centre d'affixe $1$ et d'angle $\pi$ , et soient $\tilde f$ et $\tilde g$ leurs représentations en coordonnée complexe.
+
+ On a donc $\tilde f : z\mapsto -z$ et $\tilde g : z\mapsto -(z-1)+1$.
+ On en déduit $\tilde f\circ \tilde g : z\mapsto -(-(z-1)+1) = z-2$ et 
+ $\tilde g\circ \tilde f : z\mapsto -((-z)-1)+1 = z+2$. Ces deux applications sont distinctes, puisque par exemple les images de $0$ valent $-2$ et $2$. On en déduit que $\tilde f\circ \tilde g \neq \tilde g\circ \tilde f$ et donc $f\circ g \neq g\circ f$.
+\end{sol}
+\end{exo}
+
+
+
+
+
+\begin{exo}
+\begin{enumerate}
+\item Résoudre sur $\C$ l'équation $(z+1)^4=z^4$.
+\item Soient $z$ et $w$ des nombres complexes. On suppose que $z^4=w^4=1$. Montrer que $(z-w)^4\in\R$.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Soit $z\in \C$. On a 
+\begin{align*}
+& (z+1)^4=z^4\\
+ &\iff (z+1=z \text{ ou } z+1=iz\text{ ou }z+1=-z\text{ ou }z+1=-iz)\\
+&\iff \left(z=-\frac{1}{1-i}\text{ ou } z=-\frac{1}{2}\text{ ou } z=-\frac{1}{1+i}\right)
+\end{align*}
+L'ensemble des solutions est donc
+\[ \left\{\frac{-1-i}{2},\:  -\frac{1}{2},\: \frac{-1+i}{2} \right\}\]
+%(Remarque : les trois solutions sont sur la droite d'équation $x=-\frac12$, c'est-à-dire que les points sont équidistants de $0$ et de $-1$, comme on peut le voir directement sur l'équation en prenant le module.)
+\item Si $z^4=w^4=1$, alors $z$ et $w$ appartiennent à $\U_4=\{1,i,-1,-i\}$. On en déduit que 
+\[ z-w \in \{0, 2,-2, 2i, -2i, 1+i, 1-i, -1-i, -1+i\}\]
+En élevant à la puissance quatre, on a donc :\\
+$(z-w)^4  \in \{0, 16,-4 \}$ et donc \fbox{$(z-w)^4\in\R$.}
+
+%\emph{Autre rédaction : } Soient  $k$ et $l$ des entiers tels que $z=e^{ik\pi/2}$ et $w=e^{il\pi/2}$. (De tels entiers existent d'après le cours.) Alors $z-w = e^{ik\pi/2} - e^{il\pi/2} = 2\cos((k-2-l)\pi/4)e^{i(k+2+l)\pi/4}$. Après élévation à la puissance quatre, on a donc:
+%\[ (z-w)^4 = 16\cos^4((k-2-l)\pi/4) e^{i(k+2+l)\pi},\]
+%qui est bien réel.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+
+\begin{exo}
+\begin{enumerate}
+\item Définir ce qu'est une homothétie du plan.
+\item Écrire en coordonnée complexe l'homothétie de centre d'affixe $2+3i$ et de rapport $-3$.
+\item Une homothétie envoie le point d'affixe $1$ sur le point d'affixe $2-i$, et envoie le point d'affixe $1+i$ sur le point d'affixe $2+i$. Quelle est l'image de l'origine ? Quel est le centre et le rapport de cette homothétie ?
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Une application $f : \mathcal P\to \mathcal P$ est une homothétie si
+\[ \exists \Omega\in\mathcal P, \exists k\in\R^*, \forall M\in\mathcal P, \overrightarrow{\Omega f(M)}=k\overrightarrow{\Omega M}.\]
+\item D'après le cours, c'est  $z\mapsto -3(z-2-3i)+2+3i$.
+\item L'homothétie $h$ est représentée par 
+\[ \tilde h : \C\to\C, z\mapsto \tilde h(z)=az+b,\]
+avec $a\in \R^*$ et $b\in\C$. On a donc le système 
+\[
+\begin{cases}\tilde h(1)&=2-i\\ \tilde h(1+i)&=2+i\end{cases}
+\iff
+\begin{cases}
+a+b&=2-i\\
+a(1+i)+b&=2+i\end{cases}
+\]
+On en déduit que $ai=2i$ donc que $a=2$, et ensuite $b=-i$.
+
+On a donc $\tilde h(0)=-i$. L'homothétie est de rapport deux, et son centre est son unique point fixe $\omega$, caractérisé par $\tilde h(\omega)=\omega$ c'est-à-dire $2\omega-i=\omega$ et donc $\omega=i$.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}
+Mettre $(3+i\sqrt 3)^{2020}$ sous forme algébrique.
+\begin{sol}
+D'une part, on a :
+\[ 
+(3+i\sqrt 3)^{2020}
+=\left(2\sqrt 3 e^{i\pi/6}\right)^{2020} 
+=(2\sqrt 3)^{2020}e^{2020i\pi/6}
+\]
+D'autre part, $2020 = 12\times 168 + 4$, donc
+\[ e^{2020i\pi/6} = e^{(168\times 12+4)i\pi/6} = e^{4i\pi/6}=e^{2i\pi/3}.\]
+Finalement, on obtient
+\[ 
+(3+i\sqrt 3)^{2020}
+=2^{2020}3^{1010}\left(-\frac{1}{2}+i\frac{\sqrt 3}{2}\right)
+=2^{2019}3^{1010}(-1+i\sqrt 3)
+\]
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+
+\begin{enumerate}
+\item Résoudre sur $\C$ l'équation $z^2=-15+8i$.
+\item Résoudre sur $\C$ l'équation $z^2+z(2i-1)+3-3i=0$.
+\item Résoudre sur $\C$ l'équation $iz^2-z(2+i)+3+3i=0$.
+\item Résoudre sur $\C$ l'équation $z^2+iz-4+2i=0$.
+\end{enumerate}
+\emph{(Indication : réutiliser à chaque fois les résultats des questions précédentes.)}
+\begin{sol}
+\begin{enumerate}
+\item Soit $z\in \C$ et notons $a=\Re(z)$ et $b=\Im(z)$. On a les équivalences : 
+\begin{align*}
+z^2 =-15+8i
+&\iff 
+\begin{cases}
+a^2+b^2&=\sqrt{225+64}=\sqrt{289}=17\\
+a^2-b^2&= -15\\
+2ab&= 8
+\end{cases}\\
+&\iff \begin{cases}2a^2=17-15=2\\ 2b^2=17+15=32\\ab=4\end{cases}\\
+&\iff \begin{cases}a\in \{-1,1\}\\b\in \{-4,4\}\\ab=4\end{cases}
+\end{align*}
+\[\iff (a,b)=(1,4) \text{ ou } (a,b)=(-1,-4).\]
+\begin{mdframed}
+L'ensemble des solutions est $\{1+4i, \: -1-4i\}$.\end{mdframed}
+\item C'est une équation du second degré de discriminant $\Delta=-15+8i$, dont on a calculé les deux racines carrées complexes plus haut. \begin{mdframed}L'ensemble des solutions est donc
+$\{1+i,-3i\}$.\end{mdframed}
+\item Cette équation est simplement la précédente, multipliée par $i$. Elle a donc les mêmes solutions.
+\item C'est une équation du second degré, son discriminant est $\Delta'=15-8i=-\Delta=i^2\Delta$. Ses deux racines carrées sont donc les racines carrées de $\Delta$, multipliées par $i$. En effet, si $z\in \C$, on a 
+\[ z^2=i^2\Delta \iff \left(\frac{z}{i}\right)^2=\Delta\]
+Les racines carrées de $\Delta'$ sont donc $i(1+4i)=-4+i$ et $4-i$, et les solutions de l'équation sont donc $\frac{-i-4+i}{2} = -2$ et $\frac{-i+4-i}{2}=2-i$.
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+\begin{exo}
+\begin{enumerate}
+\item Montrer que pour tout $n$ entier relatif, $(1+i)^n+(1-i)^n$ est réel.
+\item Déterminer tous les entiers $n\in \Z$ tels que $(1+i)^n+(1-i)^n=0$.
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item Soit $n\in \Z$. On a la suite d'égalités :
+\begin{align*}
+(1+i)^n+(1-i)^n 
+&= (1+i)^n+\overline{1+i}^n\\
+&= (1+i)^n+\overline{(1+i)^n}\\
+&= 2 \Re\left((1+i)^n\right)
+\end{align*}
+Ceci qui montre que \fbox{$(1+i)^n+(1-i)^n\in \R$.}
+\item Soit $n\in \Z$. On a alors la suite d'équivalences :
+\begin{align*}
+(1+i)^n+(1-i)^n =0
+&\iff \left(\sqrt 2 e^{i\pi/4}\right)^n+\left(\sqrt 2 e^{-i\pi/4}\right)^n=0\\
+&\iff e^{ni\pi/4}=-e^{-ni\pi/4}\\
+&\iff e^{ni\pi/2}=e^{i\pi}\\
+&\iff e^{ni\pi/2 - i\pi}=1\\
+&\iff n\frac{\pi}{2}-\pi \equiv 0 \mod 2\pi\\
+&\iff \boxed{n\equiv 2 \mod 4}
+\end{align*}
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+\begin{exo}
+On considère l'équation $z^2+2|z|-1=0$, d'inconnue $z\in \C$.
+\begin{enumerate}
+\item Montrer que $z\in\C$ est solution de l'équation si et seulement si $-z$ l'est également.
+\item Résoudre l'équation sur $\R_+$.
+\item Résoudre l'équation sur $\R$.
+\item Montrer que les solutions complexes sont soit réelles, soit imaginaires pures. 
+\item Finir de résoudre l'équation sur $\C$. \emph{(Indication : il y a quatre solutions en tout.)}
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+\item On a l'égalité $(-z)^2+2|-z|-1 = z^2+2|z|-1$. Donc un terme est nul si et seulement si l'autre est nul. En d'autres termes, $z$ est solution si et seulement $-z$ l'est.
+
+\item Soit $z\in \R_+$. On a alors $|z|=z$, et l'équation devient $z^2+2z-1$. L'ensemble des solutions réelles de cette équation est $\{-1+\sqrt 2, -1-\sqrt 2\}$, et donc il y a une unique solution de l'équation dans $\R_+$, à savoir $-1+\sqrt 2$.
+\item D'après la première question, les solutions sur $\R$ sont $-1+\sqrt 2$ et son opposé $1-\sqrt 2$. (On pourrait aussi résoudre l'équation sur $\R_-$ mais c'est moins rapide.)
+\item Soit $z\in\C$ une solution de l'équation. On a donc $z^2=1-2|z|$, et donc $z^2\in \R$. On en déduit que $z$ est soit réel, soit imaginaire pur.
+\item Il reste à déterminer les solutions imaginaires pures, et en utilisant la première question, il suffit de déterminer les solutions dans $i\R_+$. Soit $z\in i\R_+$. Alors on peut écrire $z=i\alpha$ avec $\alpha\in\R_+$. On a alors $z^2=-\alpha^2$ et $|z|=\alpha$ et donc :
+\[ z^2+2|z|-1=0\iff -\alpha^2+2\alpha-1 =0\]
+\[\iff (\alpha-1)^2=0 \iff \alpha=1\]
+On en déduit que la seule solution dans $i\R_+$ est $i$, et donc, toujours d'après la première question, que l'ensemble des solutions imaginaires pures est $\{i;-i\}$.
+
+L'ensemble des solutions complexes est donc 
+\[ \boxed{\left\{i,-i,\sqrt 2-1, 1-\sqrt 2\right\}}\]
+\end{enumerate}
+\end{sol}
+\end{exo}
+
+
+
+
+\begin{comment}
+\begin{exo}[Si distanciel, enlever les questions de cours et mettre ceci (ressemble bcp à celui de l'année dernière]
+Résoudre sur $\C$ l'équation
+\[ |z|=|2z+3|\]
+\emph{(Indication : l'ensemble des solutions est un cercle du plan complexe. On donnera dans la conclusion le centre et le rayon de ce cercle.)}
+
+\begin{sol}
+Soit $z\in \C$. Notons $x=\Re z$ et $y=\Im z$. Alors
+\begin{align*}
+|z|=|2z+3| &\iff |z|^2=|2z+3|^2\\
+&\iff x^2+y^2 = (2x+3)^2+4y^2\\
+&\iff x^2+y^2=4x^2+12x+9+4y^2\\
+&\iff x^2+4x+3+y^2=0\\
+&\iff (x+2)^2+y^2=1\\
+&\iff |z+2|^2=1.
+\end{align*} 
+L'ensemble des solutions est le cercle dont le centre est d'affixe $-2$, et de rayon $1$.
+\end{sol}
+
+\end{exo}
+\end{comment}
+
+
+
+
+\Closesolutionfile{solutions}
+
+
+
+\newpage
+
+\section{Correction  succincte (pas de figures)}
+
+\Readsolutionfile{solutions}
+
+\end{document}
