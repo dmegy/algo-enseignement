@@ -1,11 +1,12 @@
 Algorithmes pour l'enseignement
-(Nancy, année 2026-27)
+(Nancy, année 2025-26)
 ========================
 
 
 Objectifs principaux de l'UE
 ---
 
+- renforcement en nombres complexes et géométrie
 - Apprendre à écrire des algorithmes pour répondre à une question donnée et à les implémenter en python.
 - Apprendre à justifier en détail la terminaison et correction d'algorithmes et à calculer ou estimer leur complexité. 
 
@@ -27,15 +28,7 @@ Suggestion pour apprendre LaTeX rapidement :
 - le code source de tous les exos d'exo7 est disponible sur https://github.com/exo7math/exercices-exo7 ça peut servir d'inspiration supplémentaire.
 
 
-Annales ou archives disponibles
----
-
-En 2025-2026, le cours était partagé entre de l'algo et des nombres complexes, ce qui explique que le dossier est relativement vide : je ne remettrai dedans que ce qui concerne l'algo.
-En 2024-2025, le cours ne traitait que de l'algo mais il avait deux fois plus d'heures (le Capes n'arrivait pas en L3 à cette époque, il n'y avait pas les heures de préparation spécifiques). Le programme était donc plus étendu, avec des algorithmes sur la recherche de zéros de fonctions et des questions plus difficiles de terminaison des algorithmes. J'ai néanmoins tout laissé.
-
 MCC
 ---
 
-Sujet à modification.
-Examen terminal en janvier. Interrogations de TD tout au long du semestre. Il est possible qu'une partie d'une épreuve blanche compte aussi en partie pour la note de contrôle continu de cette UE.
-
+Partiel de novembre, examen de janvier, note de contrôle continu à partir d'interrogations.
