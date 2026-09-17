@@ -1,3 +1,11 @@
+14 septembre
+---
+
+Courte interro au début (la note ne compte pas dans la moyenne), puis séance de TD, sur la feuille 1.
+
+Feuille 2 distribuée.
+
+
 7 septembre (1ère séance)
 ---
 Première séance, discussion, définitions, boucles etc, différences réels/flottants etc.
